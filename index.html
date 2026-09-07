@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clean and Shiny — Home Page Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300..500;1,6..96,400..500&family=Parisienne&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0B0A08; --panel: #16130E; --panel-2: #1D1A13;
+    --bone: #F3EEE2; --bone-2: #EAE3D1; --gold: #C9A227; --gold-light: #E3C665;
+    --ink: #241F17; --muted-on-black: #B7AC90; --muted-on-bone: #6B6250;
+    --hair-on-black: rgba(201,162,39,0.22); --hair-on-bone: rgba(36,31,23,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bone); color: var(--ink); font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  img, video { display: block; max-width: 100%; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+  h1, h2, h3 { font-family: 'Bodoni Moda', serif; font-weight: 400; letter-spacing: -0.01em; }
+  h3 { font-weight: 500; }
+  .script { font-family: 'Parisienne', cursive; font-weight: 400; font-style: normal; }
+  .eyebrow { font-size: 12.5px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
+
+  header { position: sticky; top: 0; z-index: 50; background: rgba(11,10,8,0.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--hair-on-black); }
+  .header-inner { max-width: 1240px; margin: 0 auto; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark { width: 46px; height: 34px; }
+  .brand-word { color: var(--bone); font-weight: 700; letter-spacing: 0.14em; font-size: 14px; text-transform: uppercase; }
+  .brand-word span { color: var(--gold); }
+  nav { display: flex; align-items: center; gap: 36px; }
+  nav a { color: var(--muted-on-black); text-decoration: none; font-size: 13.5px; font-weight: 500; }
+  nav a:hover { color: var(--gold-light); }
+  .btn-quote { background: var(--gold); color: var(--black); padding: 10px 22px; border-radius: 2px; font-size: 13px; font-weight: 700; text-decoration: none; }
+
+  .hero { position: relative; min-height: 92vh; display: flex; align-items: flex-end; background: var(--black); overflow: hidden; }
+  .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; opacity: 0.62; }
+  .hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,10,8,0.30) 0%, rgba(11,10,8,0.5) 45%, rgba(11,10,8,0.96) 92%); }
+  .hero-content { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; padding: 0 40px 88px; width: 100%; }
+  .hero-eyebrow { color: var(--gold-light); margin-bottom: 22px; }
+  .hero h1 { color: var(--bone); font-size: clamp(46px, 7.2vw, 92px); line-height: 1.0; max-width: 15ch; }
+  .hero h1 em { color: var(--gold-light); font-family: 'Parisienne', cursive; font-weight: 400; font-style: normal; font-size: 1.08em; }
+  .hero-sub { color: var(--muted-on-black); font-size: 18px; max-width: 46ch; margin-top: 26px; line-height: 1.65; }
+  .hero-actions { display: flex; gap: 18px; margin-top: 40px; align-items: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--black); padding: 15px 30px; text-decoration: none; font-weight: 700; font-size: 14.5px; letter-spacing: 0.03em; border-radius: 2px; }
+  .btn-ghost { color: var(--bone); text-decoration: none; font-weight: 500; font-size: 14.5px; letter-spacing: 0.02em; border-bottom: 1px solid var(--hair-on-black); padding-bottom: 3px; }
+
+  .trust-strip { background: var(--panel); border-bottom: 1px solid var(--hair-on-black); }
+  .trust-grid { max-width: 1240px; margin: 0 auto; padding: 34px 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .trust-num { font-family: 'Bodoni Moda', serif; font-weight: 400; color: var(--gold-light); font-size: clamp(30px, 3.2vw, 44px); letter-spacing: -0.01em; }
+  .trust-label { color: var(--muted-on-black); font-size: 13px; margin-top: 4px; }
+  .trust-pending { font-size: 10.5px; color: #8a7c50; margin-top: 3px; }
+
+  section { padding: 120px 0; }
+  .section-head { max-width: 640px; margin-bottom: 56px; }
+  .section-head .eyebrow { color: var(--gold); position: relative; padding-left: 28px; }
+  .section-head .eyebrow::before { content: ''; position: absolute; left: 0; top: 50%; width: 18px; height: 1px; background: var(--gold); }
+  .section-head h2 { font-size: clamp(34px, 4.4vw, 54px); margin-top: 18px; line-height: 1.06; }
+  .section-head p { color: var(--muted-on-bone); margin-top: 16px; font-size: 16.5px; }
+  .on-dark .section-head .eyebrow { color: var(--gold-light); }
+  .on-dark .section-head .eyebrow::before { background: var(--gold-light); }
+  .on-dark .section-head h2 { color: var(--bone); }
+  .on-dark .section-head p { color: var(--muted-on-black); }
+
+  .ba-frame img, .gal-card img, .res-card img, .about-photos img { width: 100%; height: 100%; object-fit: cover; image-orientation: from-image; }
+  .ph-box { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; width:100%; height:100%; background: repeating-linear-gradient(135deg, rgba(201,162,39,0.06) 0 14px, rgba(201,162,39,0.11) 14px 28px); border: 1px dashed rgba(201,162,39,0.45); color: var(--gold-light); }
+  .ph-mark { opacity: .8; }
+  .ph-label { font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .ph-sub { font-size: 10.5px; color: var(--muted-on-black); }
+
+  .ba-section { background: var(--black); color: var(--bone); }
+  .ba-frame { position: relative; max-width: 1240px; margin: 0 auto; aspect-ratio: 16/8; border-radius: 3px; overflow: hidden; box-shadow: 0 40px 90px -30px rgba(0,0,0,0.7); display: grid; grid-template-columns: 1fr 1fr; }
+  .ba-tag { position: absolute; top: 22px; z-index: 4; font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(11,10,8,0.72); color: var(--bone); padding: 7px 14px; border: 1px solid rgba(243,238,226,0.25); }
+  .ba-tag.before { left: 22px; }
+  .ba-tag.after { right: 22px; background: rgba(201,162,39,0.92); color: var(--black); border-color: transparent; }
+  .ba-caption + .ba-frame { margin-top: 54px; }
+  .ba-caption { max-width: 1240px; margin: 26px auto 0; }
+  .ba-caption p { color: var(--muted-on-black); font-size: 14px; }
+
+  .gal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .gal-card { position: relative; border-radius: 2px; overflow: hidden; aspect-ratio: 3/4; background: var(--panel); }
+  .gal-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px; color: var(--bone); font-size: 13px; font-weight: 500; background: linear-gradient(180deg, transparent, rgba(11,10,8,0.5)); }
+  .gal-cap span { display: block; color: var(--gold-light); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
+
+  .results-band { background: var(--bone-2); }
+  .res-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 18px; }
+  .res-card { border-radius: 2px; overflow: hidden; }
+  .res-card.tall { grid-row: span 2; aspect-ratio: 3/4; }
+  .res-card:not(.tall) { aspect-ratio: 4/3; }
+
+  .about-band { background: var(--black); color: var(--bone); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .about-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .about-photos > div { border-radius: 2px; height: 260px; }
+  .about-photos .p2 { margin-top: 30px; }
+  .about-copy .eyebrow { color: var(--gold-light); margin-bottom: 16px; }
+  .about-copy h2 { color: var(--bone); font-size: clamp(32px, 3.8vw, 48px); line-height: 1.08; }
+  .about-copy h2 em { color: var(--gold-light); font-family: 'Parisienne', cursive; font-weight: 400; font-style: normal; font-size: 1.05em; }
+  .about-copy p { color: var(--muted-on-black); margin-top: 20px; font-size: 16px; }
+  .about-quote { margin-top: 26px; padding-left: 20px; border-left: 2px solid var(--gold); font-family: 'Bodoni Moda', serif; font-style: italic; font-weight: 400; font-size: 19px; color: var(--bone-2); }
+  .about-quote cite { display: block; font-style: normal; font-family: 'Inter'; font-size: 12.5px; color: var(--gold-light); margin-top: 10px; }
+
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--hair-on-bone); border: 1px solid var(--hair-on-bone); }
+  .svc-card { background: var(--bone); padding: 38px 32px; }
+  .svc-card .num { color: var(--gold); font-family: 'Bodoni Moda', serif; font-size: 15px; font-weight: 500; }
+  .svc-card h3 { margin-top: 16px; font-size: 21px; }
+  .svc-card p { margin-top: 12px; color: var(--muted-on-bone); font-size: 15px; }
+  .svc-card a { display: inline-block; margin-top: 18px; font-size: 13.5px; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
+
+  .testi-section { background: var(--panel); color: var(--bone); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .testi-card { background: var(--panel-2); border: 1px dashed rgba(201,162,39,0.4); border-radius: 3px; padding: 30px 26px; position: relative; }
+  .testi-stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; }
+  .testi-body { font-family: 'Bodoni Moda', serif; font-style: italic; font-weight: 400; font-size: 17px; color: var(--muted-on-black); margin-top: 16px; line-height: 1.55; }
+  .testi-who { margin-top: 20px; font-size: 13px; color: var(--bone-2); font-weight: 600; }
+  .testi-role { font-size: 12px; color: var(--muted-on-black); margin-top: 2px; }
+  .placeholder-badge { position: absolute; top: -11px; left: 24px; background: var(--gold); color: var(--black); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+
+  .cta { background: var(--black); color: var(--bone); text-align: center; padding: 120px 0; background-image: radial-gradient(ellipse at 50% 0%, rgba(201,162,39,0.10), transparent 60%); }
+  .cta .eyebrow { color: var(--gold-light); justify-content: center; display: flex; }
+  .cta h2 { font-size: clamp(38px, 5vw, 60px); margin-top: 18px; max-width: 18ch; margin-left: auto; margin-right: auto; line-height: 1.08; }
+  .cta h2 em { color: var(--gold-light); font-family: 'Parisienne', cursive; font-weight: 400; font-style: normal; font-size: 1.05em; }
+  .cta-note { color: var(--muted-on-black); max-width: 50ch; margin: 20px auto 0; font-size: 15px; }
+  .cta-actions { margin-top: 36px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+
+  footer { background: var(--black); border-top: 1px solid var(--hair-on-black); padding: 50px 0 30px; }
+  .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 36px; }
+  .footer-brand { display: flex; align-items: center; gap: 12px; }
+  .footer-brand span { color: var(--bone); font-weight: 700; letter-spacing: 0.14em; font-size: 13px; }
+  .footer-cols { display: flex; gap: 60px; flex-wrap: wrap; }
+  .footer-col h4 { color: var(--gold-light); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .footer-col a, .footer-col p { display: block; color: var(--muted-on-black); font-size: 14px; text-decoration: none; margin-bottom: 8px; }
+  .footer-bottom { margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--hair-on-black); display: flex; justify-content: space-between; color: #6b6252; font-size: 12px; flex-wrap: wrap; gap: 10px; }
+
+  .build-note { background: #fff8e1; border-bottom: 2px solid var(--gold); color: #5c4a12; font-size: 13px; text-align: center; padding: 10px 20px; }
+  .build-note strong { font-weight: 700; }
+
+  .call-float { position: fixed; right: 26px; bottom: 26px; width: 60px; height: 60px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px -6px rgba(0,0,0,0.55); z-index: 70; transition: transform .18s ease, box-shadow .18s ease; }
+  .call-float:hover { transform: scale(1.07); box-shadow: 0 16px 34px -6px rgba(0,0,0,0.6); }
+  .call-float svg { width: 26px; height: 26px; fill: var(--black); }
+
+  @media (max-width: 980px) {
+    nav { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .trust-grid { grid-template-columns: repeat(2,1fr); }
+    .gal-grid { grid-template-columns: repeat(2,1fr); }
+    .res-grid { grid-template-columns: 1fr 1fr; }
+    .res-card.tall { grid-row: span 1; aspect-ratio: 4/3; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .ba-frame { grid-template-columns: 1fr; aspect-ratio: auto; }
+    .ba-frame > div { aspect-ratio: 4/3; }
+    .call-float { width: 52px; height: 52px; right: 16px; bottom: 16px; }
+    .call-float svg { width: 22px; height: 22px; }
+    .wrap, .header-inner { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="build-note"><strong>Customer preview</strong> — Clean &amp; Shiny homepage. Still pending: pricing calculator, client testimonials, jobs-completed figure, insurance certificate and final domain.</div>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 400 300" fill="#C9A227"><g transform="translate(29.15,265.00) scale(0.35439,-0.35439)"><path d="M407 636Q452 636 484.5 632.0Q517 628 545.0 618.5Q573 609 604 593Q610 589 611.5 586.5Q613 584 614 571L626 457Q626 455 620.5 453.5Q615 452 614 456Q592 539 541.5 580.5Q491 622 407 622Q318 622 252.0 585.0Q186 548 149.5 480.0Q113 412 113 320Q113 255 136.5 197.0Q160 139 201.5 95.0Q243 51 296.0 26.0Q349 1 409 1Q495 1 547.0 42.5Q599 84 621 164Q622 167 627.5 166.0Q633 165 633 163L625 57Q624 45 622.0 42.0Q620 39 614 35Q561 7 515.5 -3.0Q470 -13 408 -13Q303 -13 222.0 28.5Q141 70 95.0 145.0Q49 220 49 319Q49 391 75.5 449.0Q102 507 150.5 549.0Q199 591 264.0 613.5Q329 636 407 636Z"/></g><g transform="translate(142.39,258.00) scale(0.15198,-0.15198)"><path d="M64 139Q64 186 86.0 222.0Q108 258 143.0 287.5Q178 317 217.0 343.5Q256 370 291.0 398.0Q326 426 348.0 458.5Q370 491 370 532Q370 578 345.5 602.5Q321 627 280 627Q240 627 217.0 602.5Q194 578 194 525Q194 473 215.5 420.5Q237 368 275.0 316.5Q313 265 363.0 216.5Q413 168 469 126Q531 80 589.5 50.0Q648 20 690 12Q695 11 694.0 5.5Q693 0 690 0Q670 0 644.5 0.0Q619 0 596 0Q583 0 561.0 8.0Q539 16 506.0 36.5Q473 57 426 96Q375 137 326.5 185.0Q278 233 238.5 284.5Q199 336 174 385Q161 416 153.5 443.0Q146 470 146 494Q146 535 166.0 569.5Q186 604 222.0 625.0Q258 646 305 646Q328 646 354.5 638.5Q381 631 399.5 609.5Q418 588 418 547Q418 504 396.5 472.0Q375 440 340.5 413.5Q306 387 268.0 362.5Q230 338 195.5 310.5Q161 283 139.5 248.5Q118 214 118 168Q118 125 139.5 89.5Q161 54 198.0 33.5Q235 13 281 13Q330 13 372.0 35.5Q414 58 445.0 95.5Q476 133 493.0 179.5Q510 226 510 275Q510 301 499.0 319.0Q488 337 441 337Q438 337 437.5 343.0Q437 349 441 349L643 350Q647 350 647.0 344.0Q647 338 643 338Q607 338 589.5 331.5Q572 325 565.0 313.0Q558 301 553 283Q543 248 527.0 208.0Q511 168 487.0 129.0Q463 90 429.0 58.0Q395 26 349.0 7.0Q303 -12 244 -12Q182 -12 142.0 9.5Q102 31 83.0 66.0Q64 101 64 139Z"/></g><g transform="translate(163.83,265.00) scale(0.35494,-0.35494)"><path d="M138 504Q138 462 158.5 432.5Q179 403 211.5 381.0Q244 359 280 338Q317 317 351.0 293.5Q385 270 407.5 237.5Q430 205 430 157Q430 111 407.5 72.5Q385 34 340.0 11.0Q295 -12 227 -12Q205 -12 183.5 -9.0Q162 -6 139.5 1.5Q117 9 91 22Q86 25 84.5 29.5Q83 34 82 41L67 171Q66 176 71.5 176.5Q77 177 78 173Q82 143 94.0 113.0Q106 83 126.5 58.0Q147 33 177.5 17.5Q208 2 249 2Q280 2 309.0 13.5Q338 25 356.5 51.0Q375 77 375 122Q375 171 353.5 203.5Q332 236 299.0 259.5Q266 283 229 304Q194 325 161.0 348.0Q128 371 107.5 402.5Q87 434 87 481Q87 533 113.0 567.5Q139 602 180.5 619.0Q222 636 267 636Q293 636 321.5 630.5Q350 625 381 612Q389 609 392.5 604.5Q396 600 396 595L405 489Q405 485 399.5 485.0Q394 485 393 489Q391 511 382.5 534.5Q374 558 357.5 578.0Q341 598 315.5 610.5Q290 623 254 623Q211 623 185.5 605.0Q160 587 149.0 560.0Q138 533 138 504Z"/></g></svg>
+      <div class="brand-word">Clean<span> &amp; </span>Shiny</div>
+    </div>
+    <nav><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#about">About</a><a href="#testimonials">Reviews</a><a href="#contact">Contact</a></nav>
+    <a class="btn-quote" href="#contact">Get a Quote</a>
+  </div>
+</header>
+
+<section class="hero" style="padding:0;">
+  <video class="hero-media" autoplay muted loop playsinline poster="https://d8j0ntlcm91z4.cloudfront.net/user_2x5ncfxN9ZspiJtb6rYPhWO9Zp2/hf_20260830_210029_ab7aa5a8-285d-43d8-884f-af7193b120b9.png">
+    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_2x5ncfxN9ZspiJtb6rYPhWO9Zp2/hf_20260830_210214_8f1711b9-76a5-4e48-9f4f-04a81c495fbd.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow eyebrow">Chicago Area &nbsp;·&nbsp; Residential &amp; Commercial</div>
+    <h1>The trusted standard for a <em>spotless</em> home.</h1>
+    <p class="hero-sub">Over 10 years of dependable, detail-obsessed cleaning — built on referrals, not gimmicks. See the difference for yourself below.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#contact">Request Your Quote</a>
+      <a class="btn-ghost" href="#before-after">See the transformation &#8595;</a>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-grid">
+    <div><div class="trust-num">10+</div><div class="trust-label">Years in business</div></div>
+    <div><div class="trust-num">[ ]</div><div class="trust-label">Homes &amp; offices cleaned</div><div class="trust-pending">pending — real count from Maria</div></div>
+    <div><div class="trust-num">100%</div><div class="trust-label">Referral &amp; word-of-mouth grown</div></div>
+    <div><div class="trust-num">Insured</div><div class="trust-label">&amp; bonded for your peace of mind</div><div class="trust-pending">hold — needs certificate of insurance</div></div>
+  </div>
+</div>
+
+<section class="ba-section" id="before-after">
+  <div class="wrap on-dark">
+    <div class="section-head">
+      <div class="eyebrow">Proof, not promises</div>
+      <h2>What ten years of experience actually looks like.</h2>
+      <p>Real jobs from recent Clean &amp; Shiny deep-cleans — before and after, untouched.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="ba-frame">
+      <div style="position:relative;"><img src="images/oven-before.jpg" alt="Oven interior before cleaning, with baked-on grease and residue"><div class="ba-tag before">Before</div></div>
+      <div style="position:relative;"><img src="images/oven-after.jpg" alt="The same oven after a Clean and Shiny deep clean, degreased and detailed"><div class="ba-tag after">After</div></div>
+    </div>
+    <div class="ba-caption"><p>Deep clean package &middot; oven interior</p></div>
+    <div class="ba-frame">
+      <div style="position:relative;"><img src="images/fridge-before.jpg" alt="Refrigerator interior before cleaning, with stained shelves and spill residue"><div class="ba-tag before">Before</div></div>
+      <div style="position:relative;"><img src="images/fridge-after.jpg" alt="The same refrigerator after cleaning, with clear shelves and drawers"><div class="ba-tag after">After</div></div>
+    </div>
+    <div class="ba-caption"><p>Deep clean package &middot; refrigerator interior</p></div>
+    <div class="ba-frame">
+      <div style="position:relative;"><img src="images/window-before.jpg" alt="Window frame and sill before cleaning, showing scuffs and buildup"><div class="ba-tag before">Before</div></div>
+      <div style="position:relative;"><img src="images/window-after.jpg" alt="The same window frame after cleaning"><div class="ba-tag after">After</div></div>
+    </div>
+    <div class="ba-caption"><p>Detail clean &middot; window frames &amp; tracks</p></div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What we handle</div>
+      <h2>The buildup most cleanings miss.</h2>
+      <p>Vents, fridge shelves, window tracks, appliance interiors — the spots that quietly collect the most, and get skipped the most.</p>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-card"><img src="images/fridge-before.jpg" alt="Refrigerator interior with stained and smudged glass shelving"><div class="gal-cap"><span>Common condition</span>Refrigerator shelving</div></div>
+      <div class="gal-card"><img src="images/vent.jpg" alt="Air vent shown half cleaned and half covered in dust buildup"><div class="gal-cap"><span>Common condition</span>Air vents &amp; returns</div></div>
+      <div class="gal-card"><img src="images/window-before.jpg" alt="Window frame, track and sill showing wear and buildup"><div class="gal-cap"><span>Common condition</span>Window tracks</div></div>
+      <div class="gal-card"><img src="images/range-dirty.jpg" alt="Range exterior with greasy oven door and smudged cooktop"><div class="gal-cap"><span>Common condition</span>Appliance exteriors</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="results-band">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The standard we deliver</div>
+      <h2>Every room, finished the same way — thoroughly.</h2>
+      <p>A sample of completed work and the caliber of spaces we're trusted to maintain.</p>
+    </div>
+    <div class="res-grid">
+      <div class="res-card tall"><img src="images/living-room.jpg" alt="Bright living room with fireplace, velvet sofas and spiral staircase, finished to a Clean and Shiny standard"></div>
+      <div class="res-card"><img src="images/range-clean.jpg" alt="Stainless steel gas range cleaned and polished"></div>
+      <div class="res-card"><img src="images/kitchen.jpg" alt="Clean kitchen with stainless range, microwave and countertop"></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Services</div>
+      <h2>Three ways we keep your space shining.</h2>
+      <p style="color:var(--muted-on-bone); max-width:70ch;">Every service is priced to the space. Tell us the size and condition and we'll quote it.</p>
+    </div>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card"><div class="num">01</div><h3>Regular Cleaning</h3><p>Ongoing maintenance for your home. Bathrooms and kitchen washed down, every surface cleaned, all areas dusted, floors cleaned and carpets vacuumed.</p><a href="#contact">Get a quote &rarr;</a></div>
+    <div class="svc-card"><div class="num">02</div><h3>Deep Cleaning</h3><p>Bathrooms taken back to the walls, trim, windows, cabinets, light fixtures and vents. Kitchens include cabinets, every appliance, floors and all surfaces. The rest of the home is dusted throughout, with windows, trim, vents, doors, floors and furniture cleaned. <em>Oven, refrigerator and cabinet interiors available at additional cost.</em></p><a href="#contact">Get a quote &rarr;</a></div>
+    <div class="svc-card"><div class="num">03</div><h3>Move-In &amp; Move-Out</h3><p>Everything ready for the next chapter: bathrooms, kitchen, bedrooms, windows, trim, walls and light fixtures, cabinets inside and out, refrigerator interior, ovens and vents.</p><a href="#contact">Get a quote &rarr;</a></div>
+  </div>
+</section>
+
+<section class="about-band" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-photos">
+        <div class="p1"><img src="images/maria-ladder.jpg" alt="Cleaning a tall arched mirror from a ladder"></div>
+        <div class="p2"><img src="images/products.jpg" alt="Cleaning products used by Clean and Shiny arranged on a marble counter"></div>
+      </div>
+      <div class="about-copy">
+        <div class="eyebrow">About Clean &amp; Shiny</div>
+        <h2>Run by <em>Maria Vazquez</em> — ten years of hands-on, detail-first cleaning.</h2>
+        <p>I started this business ten years ago because I wanted something of my own — but I wanted it to be work I genuinely loved, and work that gave people back their time and their comfort.</p>
+        <p>I chose cleaning because I do it with real passion. I like leaving a home perfect and spotless, cleaning it as if it were my own. That is what makes the difference. I want every home we clean to feel welcoming, and to give the people who live there real comfort.</p>
+        <div class="about-quote">"I clean every home as if it were my own."<cite>— Maria Vazquez, Founder</cite></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testi-section" id="testimonials">
+  <div class="wrap on-dark">
+    <div class="section-head">
+      <div class="eyebrow">Client reviews</div>
+      <h2>Trusted and referred, in their own words.</h2>
+      <p>Three testimonial slots — ready for Maria's real client quotes.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="placeholder-badge">Awaiting testimonial 1</div><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-body">"[ Client testimonial goes here. ]"</p><div class="testi-who">[ Client name ]</div><div class="testi-role">[ Neighborhood / service type ]</div></div>
+      <div class="testi-card"><div class="placeholder-badge">Awaiting testimonial 2</div><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-body">"[ Client testimonial goes here. ]"</p><div class="testi-who">[ Client name ]</div><div class="testi-role">[ Neighborhood / service type ]</div></div>
+      <div class="testi-card"><div class="placeholder-badge">Awaiting testimonial 3</div><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-body">"[ Client testimonial goes here. ]"</p><div class="testi-who">[ Client name ]</div><div class="testi-role">[ Neighborhood / service type ]</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Get started</div>
+    <h2>See your <em>estimate</em> in under a minute.</h2>
+    <p class="cta-note">Cash, Zelle, Cash App, card and check accepted. Serving Chicago and surrounding suburbs within 40 miles, Monday through Saturday, 6am to 5pm.<br><span style="font-size:13px;opacity:.65;">[ Instant quote calculator pending pricing formula — a contact form goes here for launch ]</span></p>
+    <div class="cta-actions"><a class="btn-primary" href="#">Request a Quote</a><a class="btn-ghost" href="tel:+17738482035">Call (773) 848-2035</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand"><svg width="40" height="30" viewBox="0 0 400 300" fill="#C9A227"><g transform="translate(29.15,265.00) scale(0.35439,-0.35439)"><path d="M407 636Q452 636 484.5 632.0Q517 628 545.0 618.5Q573 609 604 593Q610 589 611.5 586.5Q613 584 614 571L626 457Q626 455 620.5 453.5Q615 452 614 456Q592 539 541.5 580.5Q491 622 407 622Q318 622 252.0 585.0Q186 548 149.5 480.0Q113 412 113 320Q113 255 136.5 197.0Q160 139 201.5 95.0Q243 51 296.0 26.0Q349 1 409 1Q495 1 547.0 42.5Q599 84 621 164Q622 167 627.5 166.0Q633 165 633 163L625 57Q624 45 622.0 42.0Q620 39 614 35Q561 7 515.5 -3.0Q470 -13 408 -13Q303 -13 222.0 28.5Q141 70 95.0 145.0Q49 220 49 319Q49 391 75.5 449.0Q102 507 150.5 549.0Q199 591 264.0 613.5Q329 636 407 636Z"/></g><g transform="translate(142.39,258.00) scale(0.15198,-0.15198)"><path d="M64 139Q64 186 86.0 222.0Q108 258 143.0 287.5Q178 317 217.0 343.5Q256 370 291.0 398.0Q326 426 348.0 458.5Q370 491 370 532Q370 578 345.5 602.5Q321 627 280 627Q240 627 217.0 602.5Q194 578 194 525Q194 473 215.5 420.5Q237 368 275.0 316.5Q313 265 363.0 216.5Q413 168 469 126Q531 80 589.5 50.0Q648 20 690 12Q695 11 694.0 5.5Q693 0 690 0Q670 0 644.5 0.0Q619 0 596 0Q583 0 561.0 8.0Q539 16 506.0 36.5Q473 57 426 96Q375 137 326.5 185.0Q278 233 238.5 284.5Q199 336 174 385Q161 416 153.5 443.0Q146 470 146 494Q146 535 166.0 569.5Q186 604 222.0 625.0Q258 646 305 646Q328 646 354.5 638.5Q381 631 399.5 609.5Q418 588 418 547Q418 504 396.5 472.0Q375 440 340.5 413.5Q306 387 268.0 362.5Q230 338 195.5 310.5Q161 283 139.5 248.5Q118 214 118 168Q118 125 139.5 89.5Q161 54 198.0 33.5Q235 13 281 13Q330 13 372.0 35.5Q414 58 445.0 95.5Q476 133 493.0 179.5Q510 226 510 275Q510 301 499.0 319.0Q488 337 441 337Q438 337 437.5 343.0Q437 349 441 349L643 350Q647 350 647.0 344.0Q647 338 643 338Q607 338 589.5 331.5Q572 325 565.0 313.0Q558 301 553 283Q543 248 527.0 208.0Q511 168 487.0 129.0Q463 90 429.0 58.0Q395 26 349.0 7.0Q303 -12 244 -12Q182 -12 142.0 9.5Q102 31 83.0 66.0Q64 101 64 139Z"/></g><g transform="translate(163.83,265.00) scale(0.35494,-0.35494)"><path d="M138 504Q138 462 158.5 432.5Q179 403 211.5 381.0Q244 359 280 338Q317 317 351.0 293.5Q385 270 407.5 237.5Q430 205 430 157Q430 111 407.5 72.5Q385 34 340.0 11.0Q295 -12 227 -12Q205 -12 183.5 -9.0Q162 -6 139.5 1.5Q117 9 91 22Q86 25 84.5 29.5Q83 34 82 41L67 171Q66 176 71.5 176.5Q77 177 78 173Q82 143 94.0 113.0Q106 83 126.5 58.0Q147 33 177.5 17.5Q208 2 249 2Q280 2 309.0 13.5Q338 25 356.5 51.0Q375 77 375 122Q375 171 353.5 203.5Q332 236 299.0 259.5Q266 283 229 304Q194 325 161.0 348.0Q128 371 107.5 402.5Q87 434 87 481Q87 533 113.0 567.5Q139 602 180.5 619.0Q222 636 267 636Q293 636 321.5 630.5Q350 625 381 612Q389 609 392.5 604.5Q396 600 396 595L405 489Q405 485 399.5 485.0Q394 485 393 489Q391 511 382.5 534.5Q374 558 357.5 578.0Q341 598 315.5 610.5Q290 623 254 623Q211 623 185.5 605.0Q160 587 149.0 560.0Q138 533 138 504Z"/></g></svg><span>CLEAN &amp; SHINY</span></div>
+      <div class="footer-cols">
+        <div class="footer-col"><h4>Site</h4><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+        <div class="footer-col"><h4>Contact</h4><p>(773) 848-2035</p><p>[ info@ pending domain ]</p><p>Monday – Saturday, 6am – 5pm</p><p>Chicago &amp; surrounding suburbs<br>within 40 miles</p></div>
+        <div class="footer-col"><h4>Language</h4><a href="#">English</a><a href="#">Espanol [ proximamente ]</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Clean &amp; Shiny LLC. All rights reserved.</span><span>Site by Cicero Web Studio</span></div>
+  </div>
+</footer>
+
+<a class="call-float" href="tel:+17738482035" aria-label="Call Clean and Shiny now">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+</a>
+
+</body>
+</html>
