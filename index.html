@@ -44,7 +44,7 @@
   .hero h1 em { color: var(--gold-light); font-family: 'Parisienne', cursive; font-weight: 400; font-style: normal; font-size: 1.08em; }
   .hero-sub { color: var(--muted-on-black); font-size: 18px; max-width: 46ch; margin-top: 26px; line-height: 1.65; }
   .hero-actions { display: flex; gap: 18px; margin-top: 40px; align-items: center; flex-wrap: wrap; }
-  .btn-primary { background: var(--gold); color: var(--black); padding: 15px 30px; text-decoration: none; font-weight: 700; font-size: 14.5px; letter-spacing: 0.03em; border-radius: 2px; }
+  .btn-primary { background: var(--gold); color: var(--black); padding: 15px 30px; text-decoration: none; font-weight: 700; font-size: 14.5px; letter-spacing: 0.03em; border-radius: 2px; border: none; cursor: pointer; font-family: 'Inter'; }
   .btn-ghost { color: var(--bone); text-decoration: none; font-weight: 500; font-size: 14.5px; letter-spacing: 0.02em; border-bottom: 1px solid var(--hair-on-black); padding-bottom: 3px; }
 
   .trust-strip { background: var(--panel); border-bottom: 1px solid var(--hair-on-black); }
@@ -65,10 +65,6 @@
   .on-dark .section-head p { color: var(--muted-on-black); }
 
   .ba-frame img, .gal-card img, .res-card img, .about-photos img { width: 100%; height: 100%; object-fit: cover; image-orientation: from-image; }
-  .ph-box { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; width:100%; height:100%; background: repeating-linear-gradient(135deg, rgba(201,162,39,0.06) 0 14px, rgba(201,162,39,0.11) 14px 28px); border: 1px dashed rgba(201,162,39,0.45); color: var(--gold-light); }
-  .ph-mark { opacity: .8; }
-  .ph-label { font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-  .ph-sub { font-size: 10.5px; color: var(--muted-on-black); }
 
   .ba-section { background: var(--black); color: var(--bone); }
   .ba-frame { position: relative; max-width: 1240px; margin: 0 auto; aspect-ratio: 16/8; border-radius: 3px; overflow: hidden; box-shadow: 0 40px 90px -30px rgba(0,0,0,0.7); display: grid; grid-template-columns: 1fr 1fr; }
@@ -108,22 +104,47 @@
   .svc-card h3 { margin-top: 16px; font-size: 21px; }
   .svc-card p { margin-top: 12px; color: var(--muted-on-bone); font-size: 15px; }
   .svc-card a { display: inline-block; margin-top: 18px; font-size: 13.5px; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
+  .svc-price { display: inline-block; margin-top: 14px; font-size: 13.5px; font-weight: 700; color: var(--gold); background: rgba(201,162,39,0.12); padding: 5px 12px; border-radius: 2px; }
 
   .testi-section { background: var(--panel); color: var(--bone); }
   .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .testi-card { background: var(--panel-2); border: 1px dashed rgba(201,162,39,0.4); border-radius: 3px; padding: 30px 26px; position: relative; }
+  .testi-grid.count-2 { grid-template-columns: repeat(2, 1fr); max-width: 900px; margin: 0 auto; }
+  .testi-card { background: var(--panel-2); border: 1px solid var(--hair-on-black); border-radius: 3px; padding: 30px 26px; position: relative; }
   .testi-stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; }
   .testi-body { font-family: 'Bodoni Moda', serif; font-style: italic; font-weight: 400; font-size: 17px; color: var(--muted-on-black); margin-top: 16px; line-height: 1.55; }
   .testi-who { margin-top: 20px; font-size: 13px; color: var(--bone-2); font-weight: 600; }
-  .testi-role { font-size: 12px; color: var(--muted-on-black); margin-top: 2px; }
-  .placeholder-badge { position: absolute; top: -11px; left: 24px; background: var(--gold); color: var(--black); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
 
-  .cta { background: var(--black); color: var(--bone); text-align: center; padding: 120px 0; background-image: radial-gradient(ellipse at 50% 0%, rgba(201,162,39,0.10), transparent 60%); }
+  .cta { background: var(--black); color: var(--bone); text-align: center; padding: 120px 0 100px; background-image: radial-gradient(ellipse at 50% 0%, rgba(201,162,39,0.10), transparent 60%); }
   .cta .eyebrow { color: var(--gold-light); justify-content: center; display: flex; }
   .cta h2 { font-size: clamp(38px, 5vw, 60px); margin-top: 18px; max-width: 18ch; margin-left: auto; margin-right: auto; line-height: 1.08; }
   .cta h2 em { color: var(--gold-light); font-family: 'Parisienne', cursive; font-weight: 400; font-style: normal; font-size: 1.05em; }
   .cta-note { color: var(--muted-on-black); max-width: 50ch; margin: 20px auto 0; font-size: 15px; }
-  .cta-actions { margin-top: 36px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+  .cta-call { margin-top: 30px; }
+
+  /* Quote form card */
+  .quote-card { background: var(--bone); color: var(--ink); border-radius: 4px; padding: 46px 44px 50px; max-width: 760px; margin: 46px auto 0; text-align: left; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.55); }
+  .qf-greeting { font-size: 14.5px; color: var(--muted-on-bone); margin-bottom: 30px; line-height: 1.65; padding-bottom: 26px; border-bottom: 1px solid var(--hair-on-bone); }
+  .qf-greeting strong { color: var(--ink); }
+  .qf-section + .qf-section { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--hair-on-bone); }
+  .qf-section h4 { font-family: 'Bodoni Moda', serif; font-size: 19px; margin-bottom: 18px; color: var(--ink); }
+  .qf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .qf-row.three { grid-template-columns: 1fr 1fr 1fr; }
+  .qf-field label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted-on-bone); margin-bottom: 6px; }
+  .qf-field input[type=text], .qf-field input[type=email], .qf-field input[type=tel], .qf-field input[type=number], .qf-field input[type=date], .qf-field select {
+    width: 100%; padding: 11px 13px; border: 1px solid rgba(36,31,23,0.22); border-radius: 2px; background: #fff; font-family: 'Inter'; font-size: 14.5px; color: var(--ink);
+  }
+  .qf-field input:focus, .qf-field select:focus { outline: none; border-color: var(--gold); }
+  .qf-yn { display: flex; gap: 22px; margin-top: 4px; }
+  .qf-yn label { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--ink); }
+  .qf-checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 22px; }
+  .qf-checklist label, .qf-time label { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 400; color: var(--ink); }
+  .qf-time { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 4px; }
+  .qf-note { font-size: 12px; color: var(--muted-on-bone); margin-top: 6px; }
+  .qf-submit { margin-top: 34px; width: 100%; background: var(--gold); color: var(--black); border: none; padding: 16px; font-weight: 700; font-size: 15px; letter-spacing: 0.03em; border-radius: 2px; cursor: pointer; font-family: 'Inter'; transition: background .15s ease; }
+  .qf-submit:hover { background: var(--gold-light); }
+  .qf-honey { position: absolute; left: -9999px; opacity: 0; height: 0; }
+  .qf-confirm { display: none; background: var(--gold); color: var(--black); border-radius: 3px; padding: 16px 20px; font-weight: 600; font-size: 14.5px; max-width: 760px; margin: 0 auto 24px; }
+  .qf-confirm.show { display: block; }
 
   footer { background: var(--black); border-top: 1px solid var(--hair-on-black); padding: 50px 0 30px; }
   .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 36px; }
@@ -150,17 +171,20 @@
     .res-card.tall { grid-row: span 1; aspect-ratio: 4/3; }
     .svc-grid { grid-template-columns: 1fr; }
     .testi-grid { grid-template-columns: 1fr; }
+    .testi-grid.count-2 { grid-template-columns: 1fr; }
     .ba-frame { grid-template-columns: 1fr; aspect-ratio: auto; }
     .ba-frame > div { aspect-ratio: 4/3; }
     .call-float { width: 52px; height: 52px; right: 16px; bottom: 16px; }
     .call-float svg { width: 22px; height: 22px; }
     .wrap, .header-inner { padding-left: 24px; padding-right: 24px; }
+    .quote-card { padding: 30px 22px; margin-left: 16px; margin-right: 16px; }
+    .qf-row, .qf-row.three, .qf-checklist { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<div class="build-note"><strong>Customer preview</strong> — Clean &amp; Shiny homepage. Still pending: pricing calculator, client testimonials, jobs-completed figure, insurance certificate and final domain.</div>
+<div class="build-note"><strong>Customer preview</strong> — Clean &amp; Shiny homepage. Still pending: jobs-completed figure, insurance certificate, Move-In/Out base price.</div>
 
 <header>
   <div class="header-inner">
@@ -265,8 +289,8 @@
     </div>
   </div>
   <div class="svc-grid">
-    <div class="svc-card"><div class="num">01</div><h3>Regular Cleaning</h3><p>Ongoing maintenance for your home. Bathrooms and kitchen washed down, every surface cleaned, all areas dusted, floors cleaned and carpets vacuumed.</p><a href="#contact">Get a quote &rarr;</a></div>
-    <div class="svc-card"><div class="num">02</div><h3>Deep Cleaning</h3><p>Bathrooms taken back to the walls, trim, windows, cabinets, light fixtures and vents. Kitchens include cabinets, every appliance, floors and all surfaces. The rest of the home is dusted throughout, with windows, trim, vents, doors, floors and furniture cleaned. <em>Oven, refrigerator and cabinet interiors available at additional cost.</em></p><a href="#contact">Get a quote &rarr;</a></div>
+    <div class="svc-card"><div class="num">01</div><h3>Regular Cleaning</h3><p>Ongoing maintenance for your home. Bathrooms and kitchen washed down, every surface cleaned, all areas dusted, floors cleaned and carpets vacuumed.</p><div class="svc-price">Starting at $180</div><br><a href="#contact">Get a quote &rarr;</a></div>
+    <div class="svc-card"><div class="num">02</div><h3>Deep Cleaning</h3><p>Bathrooms taken back to the walls, trim, windows, cabinets, light fixtures and vents. Kitchens include cabinets, every appliance, floors and all surfaces. The rest of the home is dusted throughout, with windows, trim, vents, doors, floors and furniture cleaned. <em>Oven, refrigerator and cabinet interiors available at additional cost.</em></p><div class="svc-price">Starting at $280</div><br><a href="#contact">Get a quote &rarr;</a></div>
     <div class="svc-card"><div class="num">03</div><h3>Move-In &amp; Move-Out</h3><p>Everything ready for the next chapter: bathrooms, kitchen, bedrooms, windows, trim, walls and light fixtures, cabinets inside and out, refrigerator interior, ovens and vents.</p><a href="#contact">Get a quote &rarr;</a></div>
   </div>
 </section>
@@ -294,12 +318,11 @@
     <div class="section-head">
       <div class="eyebrow">Client reviews</div>
       <h2>Trusted and referred, in their own words.</h2>
-      <p>Three testimonial slots — ready for Maria's real client quotes.</p>
+      <p>What our long-time clients say about working with us.</p>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card"><div class="placeholder-badge">Awaiting testimonial 1</div><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-body">"[ Client testimonial goes here. ]"</p><div class="testi-who">[ Client name ]</div><div class="testi-role">[ Neighborhood / service type ]</div></div>
-      <div class="testi-card"><div class="placeholder-badge">Awaiting testimonial 2</div><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-body">"[ Client testimonial goes here. ]"</p><div class="testi-who">[ Client name ]</div><div class="testi-role">[ Neighborhood / service type ]</div></div>
-      <div class="testi-card"><div class="placeholder-badge">Awaiting testimonial 3</div><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-body">"[ Client testimonial goes here. ]"</p><div class="testi-who">[ Client name ]</div><div class="testi-role">[ Neighborhood / service type ]</div></div>
+    <div class="testi-grid count-2">
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-body">"My house feels new again after every visit! I've been using this cleaning team once a month, for over 3 years and every visit is exceptional. They're always professional, punctual, and respectful. My home feels genuinely refreshed after every time, like a reset. Consistently high quality work you can count on."</p><div class="testi-who">Dr. Shondra Watson Wilson</div></div>
+      <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-body">"Clean and Shiny is a wonderful service. I love the way they come into your home and clean from ceiling to floor. I never have a complaint and have referred them to family and friends. If you want your home or apartment cleaned to the fullest, I highly recommend them."</p><div class="testi-who">Donna Bonds</div></div>
     </div>
   </div>
 </section>
@@ -308,8 +331,160 @@
   <div class="wrap">
     <div class="eyebrow">Get started</div>
     <h2>See your <em>estimate</em> in under a minute.</h2>
-    <p class="cta-note">Cash, Zelle, Cash App, card and check accepted. Serving Chicago and surrounding suburbs within 40 miles, Monday through Saturday, 6am to 5pm.<br><span style="font-size:13px;opacity:.65;">[ Instant quote calculator pending pricing formula — a contact form goes here for launch ]</span></p>
-    <div class="cta-actions"><a class="btn-primary" href="#">Request a Quote</a><a class="btn-ghost" href="tel:+17738482035">Call (773) 848-2035</a></div>
+    <p class="cta-note">Residential Standard Cleaning starts at $180 &middot; Deep Cleaning starts at $280. Final price depends on the condition, size and distance of your location.<br>Cash, Zelle, Cash App, card and check accepted. Serving Chicago and surrounding suburbs within 40 miles, Monday through Saturday, 6am to 5pm.</p>
+    <div class="cta-call"><a class="btn-ghost" href="tel:+17738482035">Or call (773) 848-2035</a></div>
+
+    <div id="qfConfirm" class="qf-confirm">Thanks! Your request went through — we'll be in touch shortly.</div>
+
+    <form class="quote-card" action="https://formsubmit.co/info@cicerowebstudio.xyz" method="POST">
+      <input type="hidden" name="_subject" value="New Quote Request — Clean &amp; Shiny website">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_next" value="https://www.cleanandshinychicago.com/?sent=true#contact">
+      <input type="text" name="_honey" class="qf-honey" tabindex="-1" autocomplete="off">
+
+      <div class="qf-greeting">
+        <strong>Welcome!</strong> Thank you for choosing Clean &amp; Shiny. It would be our pleasure to service your needs. We specialize in residential, commercial, post-construction, and move-in/move-out cleaning.<br><br>
+        Please complete this form to receive a virtual quote. If you would prefer an over-the-phone consultation, please call <strong>(773) 848-2035</strong>. We're here to help!
+      </div>
+
+      <div class="qf-section">
+        <h4>Contact Details</h4>
+        <div class="qf-row">
+          <div class="qf-field"><label>First Name</label><input type="text" name="First Name" required></div>
+          <div class="qf-field"><label>Last Name</label><input type="text" name="Last Name" required></div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-field"><label>Company Name (optional)</label><input type="text" name="Company Name"></div>
+          <div class="qf-field"><label>Phone</label><input type="tel" name="Phone" required></div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-field" style="grid-column:1/-1;"><label>Email</label><input type="email" name="Email" required></div>
+        </div>
+      </div>
+
+      <div class="qf-section">
+        <h4>Address</h4>
+        <div class="qf-row">
+          <div class="qf-field" style="grid-column:1/-1;"><label>Street Address</label><input type="text" name="Street Address" required></div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-field" style="grid-column:1/-1;"><label>Unit / Apartment / Suite (optional)</label><input type="text" name="Unit"></div>
+        </div>
+        <div class="qf-row three">
+          <div class="qf-field"><label>City</label><input type="text" name="City" required></div>
+          <div class="qf-field"><label>State</label>
+            <select name="State" required>
+              <option value="">Select</option>
+              <option>IL</option><option>IN</option><option>WI</option><option>Other</option>
+            </select>
+          </div>
+          <div class="qf-field"><label>ZIP Code</label><input type="text" name="ZIP" required></div>
+        </div>
+      </div>
+
+      <div class="qf-section">
+        <h4>Service Details</h4>
+        <div class="qf-row">
+          <div class="qf-field" style="grid-column:1/-1;"><label>Cleaning Service</label>
+            <select name="Cleaning Service" required>
+              <option value="">Choose an option</option>
+              <option>Standard Cleaning — Residential</option>
+              <option>Deep Cleaning — Residential</option>
+              <option>Move-In/Move-Out Cleaning — Residential</option>
+              <option>Post-Construction Cleaning — Residential</option>
+              <option>Commercial Cleaning</option>
+            </select>
+          </div>
+        </div>
+        <div class="qf-row three">
+          <div class="qf-field"><label>Square Footage</label><input type="number" name="Square Footage" min="0"></div>
+          <div class="qf-field"><label>No. of Bedrooms</label><input type="number" name="Bedrooms" min="0"></div>
+          <div class="qf-field"><label>No. of Bathrooms</label><input type="number" name="Bathrooms" min="0"></div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-field"><label>Pets?</label>
+            <div class="qf-yn">
+              <label><input type="radio" name="Pets" value="Yes" required> Yes</label>
+              <label><input type="radio" name="Pets" value="No"> No</label>
+            </div>
+          </div>
+          <div class="qf-field"><label>Stairs?</label>
+            <div class="qf-yn">
+              <label><input type="radio" name="Stairs" value="Yes" required> Yes</label>
+              <label><input type="radio" name="Stairs" value="No"> No</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qf-section">
+        <h4>Condition of Home</h4>
+        <div class="qf-row">
+          <div class="qf-field"><label>Baseboards/Cabinets with excessive stains?</label>
+            <div class="qf-yn">
+              <label><input type="radio" name="Excessive Stains" value="Yes"> Yes</label>
+              <label><input type="radio" name="Excessive Stains" value="No"> No</label>
+            </div>
+          </div>
+          <div class="qf-field"><label>Hard water stains / mold / mildew?</label>
+            <div class="qf-yn">
+              <label><input type="radio" name="Hard Water Stains" value="Yes"> Yes</label>
+              <label><input type="radio" name="Hard Water Stains" value="No"> No</label>
+            </div>
+          </div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-field"><label>Excessive clutter?</label>
+            <div class="qf-yn">
+              <label><input type="radio" name="Excessive Clutter" value="Yes"> Yes</label>
+              <label><input type="radio" name="Excessive Clutter" value="No"> No</label>
+            </div>
+          </div>
+          <div class="qf-field"><label>Pet that sheds?</label>
+            <div class="qf-yn">
+              <label><input type="radio" name="Pet Sheds" value="Yes"> Yes</label>
+              <label><input type="radio" name="Pet Sheds" value="No"> No</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qf-section">
+        <h4>Add-On Services</h4>
+        <p class="qf-note" style="margin:0 0 14px;">Would you like any of the below during your service appointment?</p>
+        <div class="qf-checklist">
+          <label><input type="checkbox" name="Addon Wall Cleaning" value="Wall Cleaning/Washing"> Wall Cleaning/Washing</label>
+          <label><input type="checkbox" name="Addon Oven" value="Interior Oven Clean"> Interior Oven Clean</label>
+          <label><input type="checkbox" name="Addon Fridge" value="Interior Fridge/Freezer Clean"> Interior Fridge &amp;/or Freezer Clean</label>
+          <label><input type="checkbox" name="Addon Hard Water" value="Hard Water Stain Removal"> Hard Water Stain Removal</label>
+          <label><input type="checkbox" name="Addon Grout" value="Floor Tile/Grout Clean"> Floor Tile/Grout Clean</label>
+          <label><input type="checkbox" name="Addon Pressure Wash" value="Exterior Pressure Washing"> Exterior Pressure Washing</label>
+          <label><input type="checkbox" name="Addon Declutter" value="Pantry/Closet Declutter"> Pantry/Closet Declutter/Organization</label>
+          <label><input type="checkbox" name="Addon Patio" value="Outdoor Patio Clean"> Outdoor Patio Clean</label>
+          <label><input type="checkbox" name="Addon Windows" value="Interior Window Cleaning"> Interior Window Cleaning</label>
+        </div>
+      </div>
+
+      <div class="qf-section">
+        <h4>Your Availability</h4>
+        <div class="qf-row">
+          <div class="qf-field"><label>Preferred Day for Cleaning Service</label><input type="date" name="Preferred Day" required></div>
+          <div class="qf-field"><label>Another Day That Works</label><input type="date" name="Alternate Day"></div>
+        </div>
+        <div class="qf-field" style="margin-top:6px;">
+          <label>Preferred Arrival Time</label>
+          <div class="qf-time">
+            <label><input type="checkbox" name="Arrival Any Time" value="Any time"> Any time</label>
+            <label><input type="checkbox" name="Arrival Morning" value="Morning (8:30 AM)"> Morning (8:30 AM)</label>
+            <label><input type="checkbox" name="Arrival Afternoon" value="Afternoon (11:30 AM)"> Afternoon (11:30 AM)</label>
+            <label><input type="checkbox" name="Arrival Evening" value="Evening (5PM–8PM)"> Evening After Hours (5PM–8PM)</label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="qf-submit">Submit Quote Request</button>
+    </form>
   </div>
 </section>
 
@@ -330,6 +505,13 @@
 <a class="call-float" href="tel:+17738482035" aria-label="Call Clean and Shiny now">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
 </a>
+
+<script>
+  if (window.location.search.includes('sent=true')) {
+    var el = document.getElementById('qfConfirm');
+    if (el) { el.classList.add('show'); }
+  }
+</script>
 
 </body>
 </html>
