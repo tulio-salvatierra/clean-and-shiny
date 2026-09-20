@@ -64,16 +64,30 @@
   .on-dark .section-head h2 { color: var(--bone); }
   .on-dark .section-head p { color: var(--muted-on-black); }
 
-  .ba-frame img, .gal-card img, .res-card img, .about-photos img { width: 100%; height: 100%; object-fit: cover; image-orientation: from-image; }
+  .gal-card img, .res-card img, .about-photos img { width: 100%; height: 100%; object-fit: cover; image-orientation: from-image; }
 
   .ba-section { background: var(--black); color: var(--bone); }
-  .ba-frame { position: relative; max-width: 1240px; margin: 0 auto; aspect-ratio: 16/8; border-radius: 3px; overflow: hidden; box-shadow: 0 40px 90px -30px rgba(0,0,0,0.7); display: grid; grid-template-columns: 1fr 1fr; }
-  .ba-tag { position: absolute; top: 22px; z-index: 4; font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(11,10,8,0.72); color: var(--bone); padding: 7px 14px; border: 1px solid rgba(243,238,226,0.25); }
-  .ba-tag.before { left: 22px; }
-  .ba-tag.after { right: 22px; background: rgba(201,162,39,0.92); color: var(--black); border-color: transparent; }
-  .ba-caption + .ba-frame { margin-top: 54px; }
+  .ba-caption + .reveal-frame { margin-top: 54px; }
   .ba-caption { max-width: 1240px; margin: 26px auto 0; }
   .ba-caption p { color: var(--muted-on-black); font-size: 14px; }
+
+  .reveal-frame { position: relative; max-width: 1240px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 3px; overflow: hidden; box-shadow: 0 40px 90px -30px rgba(0,0,0,0.7); cursor: none; }
+  .reveal-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-orientation: from-image; }
+  .reveal-dirty { z-index: 1; }
+  .reveal-clean { z-index: 2; }
+  .reveal-frame.is-hovering .reveal-clean {
+    -webkit-mask-image: radial-gradient(circle 130px at var(--mx,50%) var(--my,50%), rgba(0,0,0,0) 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,1) 100%);
+    mask-image: radial-gradient(circle 130px at var(--mx,50%) var(--my,50%), rgba(0,0,0,0) 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,1) 100%);
+  }
+  .reveal-ring { position: absolute; width: 130px; height: 130px; left: var(--mx,50%); top: var(--my,50%); margin: -65px 0 0 -65px; border: 2px solid var(--gold-light); border-radius: 50%; opacity: 0; pointer-events: none; z-index: 4; transition: opacity .15s ease; }
+  .reveal-frame.is-hovering .reveal-ring { opacity: 0.85; }
+  .reveal-badge { position: absolute; top: 22px; left: 22px; z-index: 5; font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 7px 14px; border: 1px solid rgba(243,238,226,0.25); background: rgba(201,162,39,0.92); color: var(--black); border-color: transparent; transition: opacity .15s ease; pointer-events: none; }
+  .reveal-badge.active { background: rgba(11,10,8,0.78); color: var(--bone); border-color: rgba(243,238,226,0.25); }
+  .reveal-frame:not(.is-hovering) .reveal-badge.active { opacity: 0; }
+  .reveal-frame.is-hovering .reveal-badge:not(.active) { opacity: 0; }
+  @media (max-width: 980px) {
+    .reveal-frame { aspect-ratio: 4/3; cursor: auto; }
+  }
 
   .gal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .gal-card { position: relative; border-radius: 2px; overflow: hidden; aspect-ratio: 3/4; background: var(--panel); }
@@ -145,6 +159,11 @@
   .qf-honey { position: absolute; left: -9999px; opacity: 0; height: 0; }
   .qf-confirm { display: none; background: var(--gold); color: var(--black); border-radius: 3px; padding: 16px 20px; font-weight: 600; font-size: 14.5px; max-width: 760px; margin: 0 auto 24px; }
   .qf-confirm.show { display: block; }
+  .qf-status { margin-top: 16px; padding: 0; font-size: 14.5px; font-weight: 600; border-radius: 3px; line-height: 1.5; }
+  .qf-status.show { padding: 14px 16px; }
+  .qf-status.ok { background: rgba(201,162,39,0.18); border: 1px solid var(--gold); color: #6b5410; }
+  .qf-status.err { background: #fdecec; border: 1px solid #d9534f; color: #8a2a27; }
+  .qf-status.busy { background: rgba(36,31,23,0.06); border: 1px solid rgba(36,31,23,0.18); color: var(--muted-on-bone); }
 
   footer { background: var(--black); border-top: 1px solid var(--hair-on-black); padding: 50px 0 30px; }
   .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 36px; }
@@ -172,8 +191,6 @@
     .svc-grid { grid-template-columns: 1fr; }
     .testi-grid { grid-template-columns: 1fr; }
     .testi-grid.count-2 { grid-template-columns: 1fr; }
-    .ba-frame { grid-template-columns: 1fr; aspect-ratio: auto; }
-    .ba-frame > div { aspect-ratio: 4/3; }
     .call-float { width: 52px; height: 52px; right: 16px; bottom: 16px; }
     .call-float svg { width: 22px; height: 22px; }
     .wrap, .header-inner { padding-left: 24px; padding-right: 24px; }
@@ -231,19 +248,28 @@
     </div>
   </div>
   <div class="wrap">
-    <div class="ba-frame">
-      <div style="position:relative;"><img src="oven-before.jpg" alt="Oven interior before cleaning, with baked-on grease and residue"><div class="ba-tag before">Before</div></div>
-      <div style="position:relative;"><img src="oven-after.jpg" alt="The same oven after a Clean and Shiny deep clean, degreased and detailed"><div class="ba-tag after">After</div></div>
+    <div class="reveal-frame" data-reveal>
+      <img class="reveal-dirty" src="oven-before.jpg" alt="Oven interior before cleaning, with baked-on grease and residue">
+      <img class="reveal-clean" src="oven-after.jpg" alt="The same oven after a Clean and Shiny deep clean, degreased and detailed">
+      <div class="reveal-ring"></div>
+      <div class="reveal-badge">Hover to reveal before</div>
+      <div class="reveal-badge active">Before</div>
     </div>
     <div class="ba-caption"><p>Deep clean package &middot; oven interior</p></div>
-    <div class="ba-frame">
-      <div style="position:relative;"><img src="fridge-before.jpg" alt="Refrigerator interior before cleaning, with stained shelves and spill residue"><div class="ba-tag before">Before</div></div>
-      <div style="position:relative;"><img src="fridge-after.jpg" alt="The same refrigerator after cleaning, with clear shelves and drawers"><div class="ba-tag after">After</div></div>
+    <div class="reveal-frame" data-reveal>
+      <img class="reveal-dirty" src="fridge-before.jpg" alt="Refrigerator interior before cleaning, with stained shelves and spill residue">
+      <img class="reveal-clean" src="fridge-after.jpg" alt="The same refrigerator after cleaning, with clear shelves and drawers">
+      <div class="reveal-ring"></div>
+      <div class="reveal-badge">Hover to reveal before</div>
+      <div class="reveal-badge active">Before</div>
     </div>
     <div class="ba-caption"><p>Deep clean package &middot; refrigerator interior</p></div>
-    <div class="ba-frame">
-      <div style="position:relative;"><img src="window-before.jpg" alt="Window frame and sill before cleaning, showing scuffs and buildup"><div class="ba-tag before">Before</div></div>
-      <div style="position:relative;"><img src="window-after.jpg" alt="The same window frame after cleaning"><div class="ba-tag after">After</div></div>
+    <div class="reveal-frame" data-reveal>
+      <img class="reveal-dirty" src="window-before.jpg" alt="Window frame and sill before cleaning, showing scuffs and buildup">
+      <img class="reveal-clean" src="window-after.jpg" alt="The same window frame after cleaning">
+      <div class="reveal-ring"></div>
+      <div class="reveal-badge">Hover to reveal before</div>
+      <div class="reveal-badge active">Before</div>
     </div>
     <div class="ba-caption"><p>Detail clean &middot; window frames &amp; tracks</p></div>
   </div>
@@ -336,12 +362,9 @@
 
     <div id="qfConfirm" class="qf-confirm">Thanks! Your request went through — we'll be in touch shortly.</div>
 
-    <form class="quote-card" action="https://formsubmit.co/info@cicerowebstudio.xyz" method="POST">
+    <form class="quote-card" id="quoteForm" novalidate>
       <input type="hidden" name="_subject" value="New Quote Request — Clean &amp; Shiny website">
       <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="true">
-      <input type="hidden" name="_next" value="https://www.cleanandshinychicago.com/?sent=true#contact">
-      <input type="text" name="_honey" class="qf-honey" tabindex="-1" autocomplete="off">
 
       <div class="qf-greeting">
         <strong>Welcome!</strong> Thank you for choosing Clean &amp; Shiny. It would be our pleasure to service your needs. We specialize in residential, commercial, post-construction, and move-in/move-out cleaning.<br><br>
@@ -483,7 +506,8 @@
         </div>
       </div>
 
-      <button type="submit" class="qf-submit">Submit Quote Request</button>
+      <button type="submit" class="qf-submit" id="qfSubmitBtn">Submit Quote Request</button>
+      <div id="qfStatus" class="qf-status"></div>
     </form>
   </div>
 </section>
@@ -507,10 +531,77 @@
 </a>
 
 <script>
-  if (window.location.search.includes('sent=true')) {
-    var el = document.getElementById('qfConfirm');
-    if (el) { el.classList.add('show'); }
+(function () {
+  var ENDPOINT = 'https://formsubmit.co/ajax/info@cicerowebstudio.xyz';
+  var form = document.getElementById('quoteForm');
+  var btn = document.getElementById('qfSubmitBtn');
+  var status = document.getElementById('qfStatus');
+  if (!form) return;
+
+  function setStatus(kind, msg) {
+    status.className = 'qf-status show ' + kind;
+    status.textContent = msg;
   }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      setStatus('err', 'Please fill in the required fields highlighted above.');
+      return;
+    }
+
+    btn.disabled = true;
+    var originalLabel = btn.textContent;
+    btn.textContent = 'Sending...';
+    setStatus('busy', 'Sending your request...');
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+      .then(function (res) {
+        return res.json().catch(function () {
+          throw new Error('Server returned an unreadable response (HTTP ' + res.status + ').');
+        });
+      })
+      .then(function (data) {
+        if (data && (data.success === 'true' || data.success === true)) {
+          form.reset();
+          setStatus('ok', 'Thank you! Your request was sent. We will be in touch shortly.');
+          btn.textContent = 'Request Sent';
+        } else {
+          var detail = (data && (data.message || data.error)) || 'Unknown error.';
+          setStatus('err', 'We could not send your request: ' + detail + ' Please call (773) 848-2035 and we will take your details directly.');
+          btn.disabled = false;
+          btn.textContent = originalLabel;
+        }
+      })
+      .catch(function (err) {
+        setStatus('err', 'We could not send your request (' + err.message + '). Please call (773) 848-2035 and we will take your details directly.');
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+      });
+  });
+})();
+</script>
+
+<script>
+  document.querySelectorAll('[data-reveal]').forEach(function(frame) {
+    function setPos(x, y) {
+      var rect = frame.getBoundingClientRect();
+      frame.style.setProperty('--mx', (x - rect.left) + 'px');
+      frame.style.setProperty('--my', (y - rect.top) + 'px');
+    }
+    frame.addEventListener('mousemove', function(e) { setPos(e.clientX, e.clientY); });
+    frame.addEventListener('mouseenter', function(e) { setPos(e.clientX, e.clientY); frame.classList.add('is-hovering'); });
+    frame.addEventListener('mouseleave', function() { frame.classList.remove('is-hovering'); });
+    frame.addEventListener('touchstart', function(e) { var t = e.touches[0]; if (t) { setPos(t.clientX, t.clientY); frame.classList.add('is-hovering'); } }, {passive:true});
+    frame.addEventListener('touchmove', function(e) { var t = e.touches[0]; if (t) setPos(t.clientX, t.clientY); }, {passive:true});
+    frame.addEventListener('touchend', function() { frame.classList.remove('is-hovering'); });
+  });
 </script>
 
 </body>
