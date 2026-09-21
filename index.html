@@ -580,7 +580,19 @@
 
 <script>
 (function () {
-  var ENDPOINT = 'https://formsubmit.co/ajax/ruiz.lola.3329@gmail.com';
+  var EMAIL = 'ruiz.lola.3329@gmail.com';
+  var ENDPOINT = 'https://formsubmit.co/ajax/' + EMAIL;
+
+  // If the AJAX call is blocked (CORS / upstream rejection), fall back to a
+  // normal browser form post, which is not subject to CORS.
+  function nativeSubmit() {
+    function hidden(n, v) { var i = document.createElement('input'); i.type = 'hidden'; i.name = n; i.value = v; form.appendChild(i); }
+    hidden('_captcha', 'false');
+    hidden('_next', 'https://www.cleanandshinychicago.com/?sent=true#contact');
+    form.action = 'https://formsubmit.co/' + EMAIL;
+    form.method = 'POST';
+    HTMLFormElement.prototype.submit.call(form);
+  }
   var form = document.getElementById('quoteForm');
   var btn = document.getElementById('qfSubmitBtn');
   var status = document.getElementById('qfStatus');
@@ -589,6 +601,10 @@
   function setStatus(kind, msg) {
     status.className = 'qf-status show ' + kind;
     status.textContent = msg;
+  }
+
+  if (window.location.search.indexOf('sent=true') !== -1) {
+    setStatus('ok', 'Thank you! Your request was sent. We will be in touch shortly.');
   }
 
   form.addEventListener('submit', function (e) {
@@ -628,10 +644,9 @@
           btn.textContent = originalLabel;
         }
       })
-      .catch(function (err) {
-        setStatus('err', 'We could not send your request (' + err.message + '). Please call (773) 848-2035 and we will take your details directly.');
-        btn.disabled = false;
-        btn.textContent = originalLabel;
+      .catch(function () {
+        setStatus('busy', 'Sending your request...');
+        nativeSubmit();
       });
   });
 })();
