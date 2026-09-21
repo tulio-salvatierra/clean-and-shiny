@@ -413,6 +413,9 @@
     <form class="quote-card" id="quoteForm" novalidate>
       <input type="hidden" name="_subject" value="New Quote Request — Clean &amp; Shiny website">
       <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://www.cleanandshinychicago.com/?sent=true#contact">
+      <input type="hidden" name="_replyto" value="">
 
       <div class="qf-greeting">
         <strong>Welcome!</strong> Thank you for choosing Clean &amp; Shiny. It would be our pleasure to service your needs. We specialize in residential, commercial, post-construction, and move-in/move-out cleaning.<br><br>
@@ -583,12 +586,10 @@
   var EMAIL = 'ruiz.lola.3329@gmail.com';
   var ENDPOINT = 'https://formsubmit.co/ajax/' + EMAIL;
 
-  // If the AJAX call is blocked (CORS / upstream rejection), fall back to a
-  // normal browser form post, which is not subject to CORS.
+  // If the AJAX request is blocked by the visitor's browser or network, use a
+  // regular form post. The hidden FormSubmit settings live in the HTML so both
+  // submission paths send exactly the same information.
   function nativeSubmit() {
-    function hidden(n, v) { var i = document.createElement('input'); i.type = 'hidden'; i.name = n; i.value = v; form.appendChild(i); }
-    hidden('_captcha', 'false');
-    hidden('_next', 'https://www.cleanandshinychicago.com/?sent=true#contact');
     form.action = 'https://formsubmit.co/' + EMAIL;
     form.method = 'POST';
     HTMLFormElement.prototype.submit.call(form);
@@ -622,31 +623,44 @@
     btn.textContent = 'Sending…';
     setStatus('busy', 'Sending your request…');
 
+    var replyTo = form.querySelector('input[name="_replyto"]');
+    var email = form.elements['Email'];
+    if (replyTo && email) replyTo.value = email.value;
+
     fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: new FormData(form)
     })
       .then(function (res) {
-        return res.json().catch(function () {
-          throw new Error('Server returned an unreadable response (HTTP ' + res.status + ').');
+        return res.text().then(function (text) {
+          var data;
+          try { data = JSON.parse(text); } catch (err) {
+            throw new Error('Server returned an unreadable response (HTTP ' + res.status + ').');
+          }
+          if (!res.ok || !data || (data.success !== 'true' && data.success !== true)) {
+            throw new Error((data && (data.message || data.error)) || 'The form service rejected this request.');
+          }
+          return data;
         });
       })
-      .then(function (data) {
-        if (data && (data.success === 'true' || data.success === true)) {
-          form.reset();
-          setStatus('ok', 'Thank you! Your request was sent. We will be in touch shortly.');
-          btn.textContent = 'Request Sent';
-        } else {
-          var detail = (data && (data.message || data.error)) || 'Unknown error.';
-          setStatus('err', 'We could not send your request: ' + detail + ' Please call (773) 848-2035 and we will take your details directly.');
-          btn.disabled = false;
-          btn.textContent = originalLabel;
-        }
+      .then(function () {
+        form.reset();
+        setStatus('ok', 'Thank you! Your request was sent. We will be in touch shortly.');
+        btn.textContent = 'Request Sent';
       })
-      .catch(function () {
-        setStatus('busy', 'Sending your request...');
-        nativeSubmit();
+      .catch(function (err) {
+        // Network/CORS failures cannot expose a useful provider response, so
+        // preserve the no-JavaScript submission path. Provider errors remain
+        // visible on the page instead of being hidden by a second submission.
+        if (/unreadable response|failed to fetch|network/i.test(err && err.message)) {
+          setStatus('busy', 'Sending your request…');
+          nativeSubmit();
+          return;
+        }
+        setStatus('err', 'We could not send your request: ' + (err.message || 'Unknown error.') + ' Please call (773) 848-2035 and we will take your details directly.');
+        btn.disabled = false;
+        btn.textContent = originalLabel;
       });
   });
 })();
