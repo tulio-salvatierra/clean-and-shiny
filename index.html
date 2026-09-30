@@ -128,13 +128,16 @@
   .about-quote { margin-top: 26px; padding-left: 20px; border-left: 2px solid var(--gold); font-family: 'Bodoni Moda', serif; font-style: italic; font-weight: 400; font-size: 19px; color: var(--bone-2); }
   .about-quote cite { display: block; font-style: normal; font-family: 'Inter'; font-size: 12.5px; color: var(--gold-light); margin-top: 10px; }
 
-  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--hair-on-bone); border: 1px solid var(--hair-on-bone); }
+  .svc-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--hair-on-bone); border: 1px solid var(--hair-on-bone); }
+  .svc-grid .svc-card { grid-column: span 2; }
+  .svc-grid .svc-card:nth-child(4), .svc-grid .svc-card:nth-child(5) { grid-column: span 3; }
   .svc-card { background: var(--bone); padding: 38px 32px; }
   .svc-card .num { color: var(--gold); font-family: 'Bodoni Moda', serif; font-size: 15px; font-weight: 500; }
   .svc-card h3 { margin-top: 16px; font-size: 21px; }
   .svc-card p { margin-top: 12px; color: var(--muted-on-bone); font-size: 15px; }
   .svc-card a { display: inline-block; margin-top: 18px; font-size: 13.5px; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
   .svc-price { display: inline-block; margin-top: 14px; font-size: 13.5px; font-weight: 700; color: var(--gold); background: rgba(201,162,39,0.12); padding: 5px 12px; border-radius: 2px; }
+  .svc-dur { margin-top: 8px; font-size: 13px; color: var(--muted-on-bone); letter-spacing: 0.02em; }
 
   .testi-section { background: var(--panel); color: var(--bone); }
   .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -214,6 +217,7 @@
     .res-grid { grid-template-columns: 1fr 1fr; }
     .res-card.tall { grid-row: span 1; aspect-ratio: 4/3; }
     .svc-grid { grid-template-columns: 1fr; }
+    .svc-grid .svc-card, .svc-grid .svc-card:nth-child(4), .svc-grid .svc-card:nth-child(5) { grid-column: span 1; }
     .testi-grid { grid-template-columns: 1fr; }
     .testi-grid.count-2 { grid-template-columns: 1fr; }
     .call-float { width: 52px; height: 52px; right: 16px; bottom: 16px; }
@@ -222,9 +226,26 @@
     .quote-card { padding: 30px 22px; margin-left: 16px; margin-right: 16px; }
     .qf-row, .qf-row.three, .qf-checklist { grid-template-columns: 1fr; }
   }
+  /* Mobile navigation */
+  .nav-toggle { display: none; background: none; border: 0; padding: 10px 6px; cursor: pointer; line-height: 0; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--bone); margin: 4px 0; transition: transform .22s ease, opacity .22s ease; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  @media (max-width: 980px) {
+    .nav-toggle { display: block; margin-left: auto; margin-right: 10px; }
+    header nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #0B0A08; box-shadow: 0 18px 30px -12px rgba(0,0,0,0.7); border-top: 1px solid var(--hair-on-black); flex-direction: column; align-items: stretch; gap: 0; padding: 6px 24px 16px; }
+    header nav.open { display: flex; }
+    header nav a { padding: 14px 2px; font-size: 15.5px; border-bottom: 1px solid rgba(243,238,226,0.08); }
+    header nav a:last-child { border-bottom: none; }
+    .header-inner { flex-wrap: wrap; }
+    .btn-quote { padding: 10px 16px; font-size: 12px; }
+  }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeAndConstructionBusiness", "@id": "https://www.cleanandshinychicago.com/#business", "name": "Clean & Shiny", "alternateName": "Clean and Shiny", "legalName": "Clean & Shiny LLC", "description": "Insured and bonded residential and commercial cleaning in Chicago and surrounding suburbs: standard, deep, move-in/move-out, post-construction and commercial cleaning. Over 10 years in business, grown by referral.", "url": "https://www.cleanandshinychicago.com/", "telephone": "+1-773-848-2035", "image": "https://www.cleanandshinychicago.com/living-room.jpg", "logo": "https://www.cleanandshinychicago.com/logo.png", "priceRange": "From $180", "paymentAccepted": "Cash, Zelle, Cash App, Credit Card, Check", "currenciesAccepted": "USD", "address": {"@type": "PostalAddress", "addressLocality": "Chicago", "addressRegion": "IL", "addressCountry": "US"}, "areaServed": [{"@type": "City", "name": "Chicago"}, {"@type": "AdministrativeArea", "name": "Chicago metropolitan area"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "06:00", "closes": "17:00"}], "founder": {"@type": "Person", "name": "Maria Vazquez"}, "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Cleaning services", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Standard Residential Cleaning"}, "priceSpecification": {"@type": "PriceSpecification", "minPrice": 180, "priceCurrency": "USD"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Deep Cleaning"}, "priceSpecification": {"@type": "PriceSpecification", "minPrice": 280, "priceCurrency": "USD"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Move-In / Move-Out Cleaning"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Post-Construction Cleaning"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Cleaning"}}]}}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does house cleaning cost with Clean & Shiny?", "acceptedAnswer": {"@type": "Answer", "text": "Standard residential cleaning starts at $180 and deep cleaning starts at $280. The final price depends on the condition, size and distance of your location. Fill out the quote form or call (773) 848-2035 for an exact price."}}, {"@type": "Question", "name": "What areas do you serve?", "acceptedAnswer": {"@type": "Answer", "text": "We clean homes and businesses in Chicago and the surrounding suburbs, within about 40 miles."}}, {"@type": "Question", "name": "What is the difference between regular cleaning and deep cleaning?", "acceptedAnswer": {"@type": "Answer", "text": "Regular cleaning is ongoing maintenance: bathrooms and kitchen washed down, surfaces cleaned, dusting, floors cleaned and carpets vacuumed. Deep cleaning goes further: bathroom walls, trim, windows, cabinets, light fixtures and vents, plus kitchen cabinets and every appliance."}}, {"@type": "Question", "name": "Is cleaning inside the oven and refrigerator included?", "acceptedAnswer": {"@type": "Answer", "text": "With deep cleaning, oven, refrigerator and cabinet interiors are available at an additional cost. Move-in and move-out cleaning includes the refrigerator interior, ovens, and cabinets inside and out."}}, {"@type": "Question", "name": "Do you clean offices and new construction?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. In addition to residential cleaning, we offer commercial cleaning and post-construction cleaning. Request a quote with the details of your space."}}, {"@type": "Question", "name": "Are you insured and bonded?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Clean & Shiny is fully insured and bonded, so your home and belongings are protected while we work."}}, {"@type": "Question", "name": "What are your hours?", "acceptedAnswer": {"@type": "Answer", "text": "Monday through Saturday, 6am to 5pm."}}, {"@type": "Question", "name": "How can I pay?", "acceptedAnswer": {"@type": "Answer", "text": "We accept cash, Zelle, Cash App, card and check."}}, {"@type": "Question", "name": "How do I get a quote?", "acceptedAnswer": {"@type": "Answer", "text": "Complete the quote form on this page with your home's size, condition and preferred dates, or call (773) 848-2035 for a phone consultation."}}]}</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does house cleaning cost with Clean & Shiny?", "acceptedAnswer": {"@type": "Answer", "text": "Standard residential cleaning starts at $180, deep cleaning at $280, move-in/move-out at $350 and post-construction at $400. Commercial cleaning is priced at $0.35 per square foot. The final price depends on the size, condition and distance of your location. Fill out the quote form or call (773) 848-2035 for an exact price."}}, {"@type": "Question", "name": "What areas do you serve?", "acceptedAnswer": {"@type": "Answer", "text": "We clean homes and businesses in Chicago and the surrounding suburbs, within about 40 miles."}}, {"@type": "Question", "name": "What is the difference between regular cleaning and deep cleaning?", "acceptedAnswer": {"@type": "Answer", "text": "Regular cleaning is ongoing maintenance: bathrooms and kitchen washed down, surfaces cleaned, dusting, floors cleaned and carpets vacuumed. Deep cleaning goes further: bathroom walls, trim, windows, cabinets, light fixtures and vents, plus kitchen cabinets and every appliance."}}, {"@type": "Question", "name": "Is cleaning inside the oven and refrigerator included?", "acceptedAnswer": {"@type": "Answer", "text": "With standard and deep cleaning, the interiors of the oven, refrigerator and cabinets are available as add-ons. Move-in and move-out cleaning includes all three as standard. Add-ons are priced together with your quote, based on size and condition."}}, {"@type": "Question", "name": "Do you clean offices and new construction?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. In addition to residential cleaning, we offer commercial cleaning and post-construction cleaning. Request a quote with the details of your space."}}, {"@type": "Question", "name": "Are you insured and bonded?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Clean & Shiny is fully insured and bonded, so your home and belongings are protected while we work."}}, {"@type": "Question", "name": "Do I need to provide cleaning supplies?", "acceptedAnswer": {"@type": "Answer", "text": "No. Our team brings its own supplies and equipment to every job. If you would prefer we use clean, plant-based products, or you would rather we work with products you already have at home, just let us know when you book — there is no extra charge either way."}}, {"@type": "Question", "name": "How many cleaners will come to my home?", "acceptedAnswer": {"@type": "Answer", "text": "Clean & Shiny has six cleaners working across two teams. Standard cleanings are typically handled by a smaller team, while deep, move-out and post-construction jobs are usually done by a team of three so they can be finished in a single visit."}}, {"@type": "Question", "name": "How long will the cleaning take?", "acceptedAnswer": {"@type": "Answer", "text": "A standard cleaning takes 2–4 hours depending on the size of the home. Deep cleaning runs 3–5 hours, move-in/move-out 3–6 hours, and post-construction 4–6 hours, each with a team of three. Commercial spaces generally take 1–3 hours depending on size."}}, {"@type": "Question", "name": "What are your hours?", "acceptedAnswer": {"@type": "Answer", "text": "Monday through Saturday, 6am to 5pm."}}, {"@type": "Question", "name": "How can I pay?", "acceptedAnswer": {"@type": "Answer", "text": "We accept cash, Zelle, Cash App, card and check."}}, {"@type": "Question", "name": "How do I get a quote?", "acceptedAnswer": {"@type": "Answer", "text": "Complete the quote form on this page with your home's size, condition and preferred dates, or call (773) 848-2035 for a phone consultation."}}]}
+</script>
 </head>
 <body>
 
@@ -235,7 +256,8 @@
       <svg class="brand-mark" viewBox="0 0 400 300" fill="#C9A227"><g transform="translate(29.15,265.00) scale(0.35439,-0.35439)"><path d="M407 636Q452 636 484.5 632.0Q517 628 545.0 618.5Q573 609 604 593Q610 589 611.5 586.5Q613 584 614 571L626 457Q626 455 620.5 453.5Q615 452 614 456Q592 539 541.5 580.5Q491 622 407 622Q318 622 252.0 585.0Q186 548 149.5 480.0Q113 412 113 320Q113 255 136.5 197.0Q160 139 201.5 95.0Q243 51 296.0 26.0Q349 1 409 1Q495 1 547.0 42.5Q599 84 621 164Q622 167 627.5 166.0Q633 165 633 163L625 57Q624 45 622.0 42.0Q620 39 614 35Q561 7 515.5 -3.0Q470 -13 408 -13Q303 -13 222.0 28.5Q141 70 95.0 145.0Q49 220 49 319Q49 391 75.5 449.0Q102 507 150.5 549.0Q199 591 264.0 613.5Q329 636 407 636Z"/></g><g transform="translate(142.39,258.00) scale(0.15198,-0.15198)"><path d="M64 139Q64 186 86.0 222.0Q108 258 143.0 287.5Q178 317 217.0 343.5Q256 370 291.0 398.0Q326 426 348.0 458.5Q370 491 370 532Q370 578 345.5 602.5Q321 627 280 627Q240 627 217.0 602.5Q194 578 194 525Q194 473 215.5 420.5Q237 368 275.0 316.5Q313 265 363.0 216.5Q413 168 469 126Q531 80 589.5 50.0Q648 20 690 12Q695 11 694.0 5.5Q693 0 690 0Q670 0 644.5 0.0Q619 0 596 0Q583 0 561.0 8.0Q539 16 506.0 36.5Q473 57 426 96Q375 137 326.5 185.0Q278 233 238.5 284.5Q199 336 174 385Q161 416 153.5 443.0Q146 470 146 494Q146 535 166.0 569.5Q186 604 222.0 625.0Q258 646 305 646Q328 646 354.5 638.5Q381 631 399.5 609.5Q418 588 418 547Q418 504 396.5 472.0Q375 440 340.5 413.5Q306 387 268.0 362.5Q230 338 195.5 310.5Q161 283 139.5 248.5Q118 214 118 168Q118 125 139.5 89.5Q161 54 198.0 33.5Q235 13 281 13Q330 13 372.0 35.5Q414 58 445.0 95.5Q476 133 493.0 179.5Q510 226 510 275Q510 301 499.0 319.0Q488 337 441 337Q438 337 437.5 343.0Q437 349 441 349L643 350Q647 350 647.0 344.0Q647 338 643 338Q607 338 589.5 331.5Q572 325 565.0 313.0Q558 301 553 283Q543 248 527.0 208.0Q511 168 487.0 129.0Q463 90 429.0 58.0Q395 26 349.0 7.0Q303 -12 244 -12Q182 -12 142.0 9.5Q102 31 83.0 66.0Q64 101 64 139Z"/></g><g transform="translate(163.83,265.00) scale(0.35494,-0.35494)"><path d="M138 504Q138 462 158.5 432.5Q179 403 211.5 381.0Q244 359 280 338Q317 317 351.0 293.5Q385 270 407.5 237.5Q430 205 430 157Q430 111 407.5 72.5Q385 34 340.0 11.0Q295 -12 227 -12Q205 -12 183.5 -9.0Q162 -6 139.5 1.5Q117 9 91 22Q86 25 84.5 29.5Q83 34 82 41L67 171Q66 176 71.5 176.5Q77 177 78 173Q82 143 94.0 113.0Q106 83 126.5 58.0Q147 33 177.5 17.5Q208 2 249 2Q280 2 309.0 13.5Q338 25 356.5 51.0Q375 77 375 122Q375 171 353.5 203.5Q332 236 299.0 259.5Q266 283 229 304Q194 325 161.0 348.0Q128 371 107.5 402.5Q87 434 87 481Q87 533 113.0 567.5Q139 602 180.5 619.0Q222 636 267 636Q293 636 321.5 630.5Q350 625 381 612Q389 609 392.5 604.5Q396 600 396 595L405 489Q405 485 399.5 485.0Q394 485 393 489Q391 511 382.5 534.5Q374 558 357.5 578.0Q341 598 315.5 610.5Q290 623 254 623Q211 623 185.5 605.0Q160 587 149.0 560.0Q138 533 138 504Z"/></g></svg>
       <div class="brand-word">Clean<span> &amp; </span>Shiny</div>
     </div>
-    <nav><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#about">About</a><a href="#testimonials">Reviews</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+    <nav id="site-nav"><a href="services.html">Services</a><a href="#gallery">Gallery</a><a href="about.html">About</a><a href="#testimonials">Reviews</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
     <a class="btn-quote" href="#contact">Get a Quote</a>
   </div>
 </header>
@@ -337,14 +359,19 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Services</div>
-      <h2>Three ways we keep your space shining.</h2>
-      <p style="color:var(--muted-on-bone); max-width:70ch;">Serving homes and businesses across Chicago and nearby suburbs. Every service is priced to the space — tell us the size and condition and we'll quote it.</p>
+      <h2>Five ways we keep your space shining.</h2>
+      <p style="color:var(--muted-on-bone); max-width:70ch;">Serving homes and businesses across Chicago and nearby suburbs. Every service is priced to the space &mdash; tell us the size and condition and we'll quote it. Our team brings its own supplies to every job.</p>
     </div>
   </div>
   <div class="svc-grid">
-    <div class="svc-card"><div class="num">01</div><h3>Regular Cleaning</h3><p>Ongoing maintenance for your home. Bathrooms and kitchen washed down, every surface cleaned, all areas dusted, floors cleaned and carpets vacuumed.</p><div class="svc-price">Starting at $180</div><br><a href="#contact">Get a quote &rarr;</a></div>
-    <div class="svc-card"><div class="num">02</div><h3>Deep Cleaning</h3><p>Bathrooms taken back to the walls, trim, windows, cabinets, light fixtures and vents. Kitchens include cabinets, every appliance, floors and all surfaces. The rest of the home is dusted throughout, with windows, trim, vents, doors, floors and furniture cleaned. <em>Oven, refrigerator and cabinet interiors available at additional cost.</em></p><div class="svc-price">Starting at $280</div><br><a href="#contact">Get a quote &rarr;</a></div>
-    <div class="svc-card"><div class="num">03</div><h3>Move-In &amp; Move-Out</h3><p>Everything ready for the next chapter: bathrooms, kitchen, bedrooms, windows, trim, walls and light fixtures, cabinets inside and out, refrigerator interior, ovens and vents.</p><a href="#contact">Get a quote &rarr;</a></div>
+    <div class="svc-card"><div class="num">01</div><h3>Standard Cleaning</h3><p>Ongoing maintenance for your home. Bathrooms and kitchen washed down, fans and vents dusted, every surface cleaned, floors vacuumed and mopped throughout.</p><div class="svc-price">From $180</div><div class="svc-dur">2&ndash;4 hours</div><br><a href="services.html">See what's included &rarr;</a></div>
+    <div class="svc-card"><div class="num">02</div><h3>Deep Cleaning</h3><p>Everything in a standard clean, plus the places routine cleaning skips &mdash; baseboards, walls and doors, interior windows, corners and under furniture.</p><div class="svc-price">From $280</div><div class="svc-dur">3&ndash;5 hours, team of three</div><br><a href="services.html">See what's included &rarr;</a></div>
+    <div class="svc-card"><div class="num">03</div><h3>Move-In &amp; Move-Out</h3><p>A full standard and deep clean of an empty home, including inside all cabinets, the oven and the refrigerator. Ready to hand over, or ready to move into.</p><div class="svc-price">From $350</div><div class="svc-dur">3&ndash;6 hours, team of three</div><br><a href="services.html">See what's included &rarr;</a></div>
+    <div class="svc-card"><div class="num">04</div><h3>Post-Construction</h3><p>After the contractors leave. Construction grime, adhesive and paste residue, paint spots and leftover debris &mdash; removed, then deep cleaned throughout.</p><div class="svc-price">From $400</div><div class="svc-dur">4&ndash;6 hours, team of three</div><br><a href="services.html">See what's included &rarr;</a></div>
+    <div class="svc-card"><div class="num">05</div><h3>Commercial Cleaning</h3><p>Offices, storefronts and workspaces, cleaned around your hours. Dusting top to bottom, trash, windows, floors, restrooms and break areas. Recurring schedules available.</p><div class="svc-price">$0.35 per sq ft</div><div class="svc-dur">1&ndash;3 hours</div><br><a href="services.html">See what's included &rarr;</a></div>
+  </div>
+  <div class="wrap" style="margin-top:46px; text-align:center;">
+    <a class="btn-primary" href="services.html">View all services &amp; pricing</a>
   </div>
 </section>
 
@@ -357,9 +384,10 @@
       </div>
       <div class="about-copy">
         <div class="eyebrow">About Clean &amp; Shiny</div>
-        <h2>Run by <em>Maria Vazquez</em> — ten years of hands-on, detail-first cleaning.</h2>
-        <p>I started this business ten years ago because I wanted something of my own — but I wanted it to be work I genuinely loved, and work that gave people back their time and their comfort.</p>
-        <p>I chose cleaning because I do it with real passion. I like leaving a home perfect and spotless, cleaning it as if it were my own. That is what makes the difference. I want every home we clean to feel welcoming, and to give the people who live there real comfort.</p>
+        <h2>Run by <em>Maria Vazquez</em> — ten years, two teams, one standard.</h2>
+        <p>Maria started out working for a cleaning company on purpose — to learn the business from the inside before building her own. Clean &amp; Shiny began with business cards handed out one at a time, and grew from neighbors recommending her to neighbors.</p>
+        <p>Today she runs two teams, six cleaners in all, across Chicago and the surrounding suburbs. What hasn't changed is the standard: the details most people never think to ask for, and a crew that treats your home with real respect. That is why clients stay for years.</p>
+        <p style="margin-top:18px;"><a href="about.html" style="color:var(--gold-light); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(227,198,101,.4); padding-bottom:2px;">Read the full story &rarr;</a></p>
         <div class="about-quote">"I clean every home as if it were my own."<cite>— Maria Vazquez, Founder</cite></div>
       </div>
     </div>
@@ -387,12 +415,15 @@
       <h2>Frequently asked questions.</h2>
     </div>
     <div class="faq-list">
-      <details class="faq-item"><summary>How much does house cleaning cost with Clean &amp; Shiny?</summary><p>Standard residential cleaning starts at $180 and deep cleaning starts at $280. The final price depends on the condition, size and distance of your location. Fill out the quote form or call (773) 848-2035 for an exact price.</p></details>
+      <details class="faq-item"><summary>How much does house cleaning cost with Clean &amp; Shiny?</summary><p>Standard residential cleaning starts at $180, deep cleaning at $280, move-in/move-out at $350 and post-construction at $400. Commercial cleaning is priced at $0.35 per square foot. The final price depends on the size, condition and distance of your location. Fill out the quote form or call (773) 848-2035 for an exact price.</p></details>
       <details class="faq-item"><summary>What areas do you serve?</summary><p>We clean homes and businesses in Chicago and the surrounding suburbs, within about 40 miles.</p></details>
       <details class="faq-item"><summary>What is the difference between regular cleaning and deep cleaning?</summary><p>Regular cleaning is ongoing maintenance: bathrooms and kitchen washed down, surfaces cleaned, dusting, floors cleaned and carpets vacuumed. Deep cleaning goes further: bathroom walls, trim, windows, cabinets, light fixtures and vents, plus kitchen cabinets and every appliance.</p></details>
-      <details class="faq-item"><summary>Is cleaning inside the oven and refrigerator included?</summary><p>With deep cleaning, oven, refrigerator and cabinet interiors are available at an additional cost. Move-in and move-out cleaning includes the refrigerator interior, ovens, and cabinets inside and out.</p></details>
+      <details class="faq-item"><summary>Is cleaning inside the oven and refrigerator included?</summary><p>With standard and deep cleaning, the interiors of the oven, refrigerator and cabinets are available as add-ons. Move-in and move-out cleaning includes all three as standard. Add-ons are priced together with your quote, based on size and condition.</p></details>
       <details class="faq-item"><summary>Do you clean offices and new construction?</summary><p>Yes. In addition to residential cleaning, we offer commercial cleaning and post-construction cleaning. Request a quote with the details of your space.</p></details>
       <details class="faq-item"><summary>Are you insured and bonded?</summary><p>Yes. Clean &amp; Shiny is fully insured and bonded, so your home and belongings are protected while we work.</p></details>
+      <details class="faq-item"><summary>Do I need to provide cleaning supplies?</summary><p>No. Our team brings its own supplies and equipment to every job. If you would prefer we use clean, plant-based products, or you would rather we work with products you already have at home, just let us know when you book &mdash; there is no extra charge either way.</p></details>
+      <details class="faq-item"><summary>How many cleaners will come to my home?</summary><p>Clean &amp; Shiny has six cleaners working across two teams. Standard cleanings are typically handled by a smaller team, while deep, move-out and post-construction jobs are usually done by a team of three so they can be finished in a single visit.</p></details>
+      <details class="faq-item"><summary>How long will the cleaning take?</summary><p>A standard cleaning takes 2&ndash;4 hours depending on the size of the home. Deep cleaning runs 3&ndash;5 hours, move-in/move-out 3&ndash;6 hours, and post-construction 4&ndash;6 hours, each with a team of three. Commercial spaces generally take 1&ndash;3 hours depending on size.</p></details>
       <details class="faq-item"><summary>What are your hours?</summary><p>Monday through Saturday, 6am to 5pm.</p></details>
       <details class="faq-item"><summary>How can I pay?</summary><p>We accept cash, Zelle, Cash App, card and check.</p></details>
       <details class="faq-item"><summary>How do I get a quote?</summary><p>Complete the quote form on this page with your home's size, condition and preferred dates, or call (773) 848-2035 for a phone consultation.</p></details>
@@ -413,9 +444,6 @@
     <form class="quote-card" id="quoteForm" novalidate>
       <input type="hidden" name="_subject" value="New Quote Request — Clean &amp; Shiny website">
       <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://www.cleanandshinychicago.com/?sent=true#contact">
-      <input type="hidden" name="_replyto" value="">
 
       <div class="qf-greeting">
         <strong>Welcome!</strong> Thank you for choosing Clean &amp; Shiny. It would be our pleasure to service your needs. We specialize in residential, commercial, post-construction, and move-in/move-out cleaning.<br><br>
@@ -526,17 +554,29 @@
 
       <div class="qf-section">
         <h4>Add-On Services</h4>
-        <p class="qf-note" style="margin:0 0 14px;">Would you like any of the below during your service appointment?</p>
+        <p class="qf-note" style="margin:0 0 14px;">Would you like any of the below during your service appointment? Add-ons are priced together with your quote, based on size and condition.</p>
         <div class="qf-checklist">
-          <label><input type="checkbox" name="Addon Wall Cleaning" value="Wall Cleaning/Washing"> Wall Cleaning/Washing</label>
           <label><input type="checkbox" name="Addon Oven" value="Interior Oven Clean"> Interior Oven Clean</label>
           <label><input type="checkbox" name="Addon Fridge" value="Interior Fridge/Freezer Clean"> Interior Fridge &amp;/or Freezer Clean</label>
+          <label><input type="checkbox" name="Addon Cabinets" value="Inside Cabinets &amp; Drawers"> Inside Cabinets &amp; Drawers</label>
+          <label><input type="checkbox" name="Addon Bed Linens" value="Change of Bed Linens"> Change of Bed Linens</label>
+          <label><input type="checkbox" name="Addon Windows" value="Interior Window Cleaning"> Interior Window Cleaning</label>
+          <label><input type="checkbox" name="Addon Wall Cleaning" value="Wall Cleaning/Washing"> Wall Cleaning/Washing</label>
           <label><input type="checkbox" name="Addon Hard Water" value="Hard Water Stain Removal"> Hard Water Stain Removal</label>
           <label><input type="checkbox" name="Addon Grout" value="Floor Tile/Grout Clean"> Floor Tile/Grout Clean</label>
-          <label><input type="checkbox" name="Addon Pressure Wash" value="Exterior Pressure Washing"> Exterior Pressure Washing</label>
           <label><input type="checkbox" name="Addon Declutter" value="Pantry/Closet Declutter"> Pantry/Closet Declutter/Organization</label>
+          <label><input type="checkbox" name="Addon Garage" value="Garage"> Garage</label>
           <label><input type="checkbox" name="Addon Patio" value="Outdoor Patio Clean"> Outdoor Patio Clean</label>
-          <label><input type="checkbox" name="Addon Windows" value="Interior Window Cleaning"> Interior Window Cleaning</label>
+          <label><input type="checkbox" name="Addon Pressure Wash" value="Exterior Pressure Washing"> Exterior Pressure Washing</label>
+        </div>
+        <div class="qf-field" style="margin-top:22px;">
+          <label>Cleaning Products</label>
+          <div class="qf-yn">
+            <label><input type="radio" name="Product Preference" value="Use your standard products" checked> Use your standard products</label>
+            <label><input type="radio" name="Product Preference" value="Prefer clean / plant-based products"> Prefer clean, plant-based products</label>
+            <label><input type="radio" name="Product Preference" value="I will supply my own products"> I'll supply my own products</label>
+          </div>
+          <p class="qf-note" style="margin-top:8px;">We bring our own supplies and equipment either way &mdash; there's no extra charge for any option.</p>
         </div>
       </div>
 
@@ -568,7 +608,7 @@
     <div class="footer-grid">
       <div class="footer-brand"><svg width="40" height="30" viewBox="0 0 400 300" fill="#C9A227"><g transform="translate(29.15,265.00) scale(0.35439,-0.35439)"><path d="M407 636Q452 636 484.5 632.0Q517 628 545.0 618.5Q573 609 604 593Q610 589 611.5 586.5Q613 584 614 571L626 457Q626 455 620.5 453.5Q615 452 614 456Q592 539 541.5 580.5Q491 622 407 622Q318 622 252.0 585.0Q186 548 149.5 480.0Q113 412 113 320Q113 255 136.5 197.0Q160 139 201.5 95.0Q243 51 296.0 26.0Q349 1 409 1Q495 1 547.0 42.5Q599 84 621 164Q622 167 627.5 166.0Q633 165 633 163L625 57Q624 45 622.0 42.0Q620 39 614 35Q561 7 515.5 -3.0Q470 -13 408 -13Q303 -13 222.0 28.5Q141 70 95.0 145.0Q49 220 49 319Q49 391 75.5 449.0Q102 507 150.5 549.0Q199 591 264.0 613.5Q329 636 407 636Z"/></g><g transform="translate(142.39,258.00) scale(0.15198,-0.15198)"><path d="M64 139Q64 186 86.0 222.0Q108 258 143.0 287.5Q178 317 217.0 343.5Q256 370 291.0 398.0Q326 426 348.0 458.5Q370 491 370 532Q370 578 345.5 602.5Q321 627 280 627Q240 627 217.0 602.5Q194 578 194 525Q194 473 215.5 420.5Q237 368 275.0 316.5Q313 265 363.0 216.5Q413 168 469 126Q531 80 589.5 50.0Q648 20 690 12Q695 11 694.0 5.5Q693 0 690 0Q670 0 644.5 0.0Q619 0 596 0Q583 0 561.0 8.0Q539 16 506.0 36.5Q473 57 426 96Q375 137 326.5 185.0Q278 233 238.5 284.5Q199 336 174 385Q161 416 153.5 443.0Q146 470 146 494Q146 535 166.0 569.5Q186 604 222.0 625.0Q258 646 305 646Q328 646 354.5 638.5Q381 631 399.5 609.5Q418 588 418 547Q418 504 396.5 472.0Q375 440 340.5 413.5Q306 387 268.0 362.5Q230 338 195.5 310.5Q161 283 139.5 248.5Q118 214 118 168Q118 125 139.5 89.5Q161 54 198.0 33.5Q235 13 281 13Q330 13 372.0 35.5Q414 58 445.0 95.5Q476 133 493.0 179.5Q510 226 510 275Q510 301 499.0 319.0Q488 337 441 337Q438 337 437.5 343.0Q437 349 441 349L643 350Q647 350 647.0 344.0Q647 338 643 338Q607 338 589.5 331.5Q572 325 565.0 313.0Q558 301 553 283Q543 248 527.0 208.0Q511 168 487.0 129.0Q463 90 429.0 58.0Q395 26 349.0 7.0Q303 -12 244 -12Q182 -12 142.0 9.5Q102 31 83.0 66.0Q64 101 64 139Z"/></g><g transform="translate(163.83,265.00) scale(0.35494,-0.35494)"><path d="M138 504Q138 462 158.5 432.5Q179 403 211.5 381.0Q244 359 280 338Q317 317 351.0 293.5Q385 270 407.5 237.5Q430 205 430 157Q430 111 407.5 72.5Q385 34 340.0 11.0Q295 -12 227 -12Q205 -12 183.5 -9.0Q162 -6 139.5 1.5Q117 9 91 22Q86 25 84.5 29.5Q83 34 82 41L67 171Q66 176 71.5 176.5Q77 177 78 173Q82 143 94.0 113.0Q106 83 126.5 58.0Q147 33 177.5 17.5Q208 2 249 2Q280 2 309.0 13.5Q338 25 356.5 51.0Q375 77 375 122Q375 171 353.5 203.5Q332 236 299.0 259.5Q266 283 229 304Q194 325 161.0 348.0Q128 371 107.5 402.5Q87 434 87 481Q87 533 113.0 567.5Q139 602 180.5 619.0Q222 636 267 636Q293 636 321.5 630.5Q350 625 381 612Q389 609 392.5 604.5Q396 600 396 595L405 489Q405 485 399.5 485.0Q394 485 393 489Q391 511 382.5 534.5Q374 558 357.5 578.0Q341 598 315.5 610.5Q290 623 254 623Q211 623 185.5 605.0Q160 587 149.0 560.0Q138 533 138 504Z"/></g></svg><span>CLEAN &amp; SHINY</span></div>
       <div class="footer-cols">
-        <div class="footer-col"><h4>Site</h4><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+        <div class="footer-col"><h4>Site</h4><a href="services.html">Services</a><a href="#gallery">Gallery</a><a href="about.html">About</a><a href="#contact">Contact</a></div>
         <div class="footer-col"><h4>Contact</h4><p><a href="tel:+17738482035" style="color:inherit;text-decoration:none;">(773) 848-2035</a></p><p>Monday – Saturday, 6am – 5pm</p><p>Chicago &amp; surrounding suburbs<br>within 40 miles</p></div>
         
       </div>
@@ -586,10 +626,12 @@
   var EMAIL = 'ruiz.lola.3329@gmail.com';
   var ENDPOINT = 'https://formsubmit.co/ajax/' + EMAIL;
 
-  // If the AJAX request is blocked by the visitor's browser or network, use a
-  // regular form post. The hidden FormSubmit settings live in the HTML so both
-  // submission paths send exactly the same information.
+  // If the AJAX call is blocked (CORS / upstream rejection), fall back to a
+  // normal browser form post, which is not subject to CORS.
   function nativeSubmit() {
+    function hidden(n, v) { var i = document.createElement('input'); i.type = 'hidden'; i.name = n; i.value = v; form.appendChild(i); }
+    hidden('_captcha', 'false');
+    hidden('_next', 'https://www.cleanandshinychicago.com/?sent=true#contact');
     form.action = 'https://formsubmit.co/' + EMAIL;
     form.method = 'POST';
     HTMLFormElement.prototype.submit.call(form);
@@ -623,44 +665,31 @@
     btn.textContent = 'Sending…';
     setStatus('busy', 'Sending your request…');
 
-    var replyTo = form.querySelector('input[name="_replyto"]');
-    var email = form.elements['Email'];
-    if (replyTo && email) replyTo.value = email.value;
-
     fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: new FormData(form)
     })
       .then(function (res) {
-        return res.text().then(function (text) {
-          var data;
-          try { data = JSON.parse(text); } catch (err) {
-            throw new Error('Server returned an unreadable response (HTTP ' + res.status + ').');
-          }
-          if (!res.ok || !data || (data.success !== 'true' && data.success !== true)) {
-            throw new Error((data && (data.message || data.error)) || 'The form service rejected this request.');
-          }
-          return data;
+        return res.json().catch(function () {
+          throw new Error('Server returned an unreadable response (HTTP ' + res.status + ').');
         });
       })
-      .then(function () {
-        form.reset();
-        setStatus('ok', 'Thank you! Your request was sent. We will be in touch shortly.');
-        btn.textContent = 'Request Sent';
-      })
-      .catch(function (err) {
-        // Network/CORS failures cannot expose a useful provider response, so
-        // preserve the no-JavaScript submission path. Provider errors remain
-        // visible on the page instead of being hidden by a second submission.
-        if (/unreadable response|failed to fetch|network/i.test(err && err.message)) {
-          setStatus('busy', 'Sending your request…');
-          nativeSubmit();
-          return;
+      .then(function (data) {
+        if (data && (data.success === 'true' || data.success === true)) {
+          form.reset();
+          setStatus('ok', 'Thank you! Your request was sent. We will be in touch shortly.');
+          btn.textContent = 'Request Sent';
+        } else {
+          var detail = (data && (data.message || data.error)) || 'Unknown error.';
+          setStatus('err', 'We could not send your request: ' + detail + ' Please call (773) 848-2035 and we will take your details directly.');
+          btn.disabled = false;
+          btn.textContent = originalLabel;
         }
-        setStatus('err', 'We could not send your request: ' + (err.message || 'Unknown error.') + ' Please call (773) 848-2035 and we will take your details directly.');
-        btn.disabled = false;
-        btn.textContent = originalLabel;
+      })
+      .catch(function () {
+        setStatus('busy', 'Sending your request...');
+        nativeSubmit();
       });
   });
 })();
@@ -681,5 +710,20 @@
     frame.addEventListener('touchend', function() { frame.classList.remove('is-hovering'); });
   });
 </script>
+<script>
+(function(){
+  var t = document.querySelector('.nav-toggle');
+  var n = document.querySelector('header nav');
+  if (!t || !n) return;
+  t.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  n.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') { n.classList.remove('open'); t.setAttribute('aria-expanded','false'); }
+  });
+})();
+</script>
+
 </body>
 </html>
